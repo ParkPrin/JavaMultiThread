@@ -1,12 +1,12 @@
-# Java Threadì˜ ê¸°ë³¸ì‚¬ìš©
+# Java ThreadÀÇ ±âº»»ç¿ë
 
-## ìŠ¤ë ˆë“œëž€?
-í”„ë¡œê·¸ëž¨ì„ ì‹¤í–‰í•˜ê³  ìžˆëŠ” ì£¼ì²´
+## ½º·¹µå¶õ?
+ÇÁ·Î±×·¥À» ½ÇÇàÇÏ°í ÀÖ´Â ÁÖÃ¼
 
-## Thread ìƒì„±
+## Thread »ý¼º
 
-ìŠ¤ë ˆë“œ ê°ì²´ë¥¼ ìƒì„±í•˜ëŠ” ë°©ë²•ì€ ë‘ ê°€ì§€ê°€ ìžˆìŒ
-###  Thread í´ëž˜ìŠ¤ë¥¼ ìƒì†ë°›ì•„ì„œ ìŠ¤ë ˆë“œ í´ëž˜ìŠ¤ ìƒì„±
+½º·¹µå °´Ã¼¸¦ »ý¼ºÇÏ´Â ¹æ¹ýÀº µÎ °¡Áö°¡ ÀÖÀ½
+###  Thread Å¬·¡½º¸¦ »ó¼Ó¹Þ¾Æ¼­ ½º·¹µå Å¬·¡½º »ý¼º
 ```
 package me.dinosauruncle.chapter1;
 
@@ -39,7 +39,7 @@ public class MyThread extends Thread {
 }
 ```
 
-### Runnable ì¸í„°íŽ˜ì´ìŠ¤ë¥¼ ë°›ì•„ì„œ êµ¬í˜„ì²´ë¡œ êµ¬í˜„ í›„ Thread ê°ì²´ë¥¼ ìƒì„±ì‹œ ì¸ìžê°’ìœ¼ë¡œ ì¸í„°íŽ˜ì´ìŠ¤ êµ¬í˜„ì²´ë¥¼ ì£¼ìž…í•¨
+### Runnable ÀÎÅÍÆäÀÌ½º¸¦ ¹Þ¾Æ¼­ ±¸ÇöÃ¼·Î ±¸Çö ÈÄ Thread °´Ã¼¸¦ »ý¼º½Ã ÀÎÀÚ°ªÀ¸·Î ÀÎÅÍÆäÀÌ½º ±¸ÇöÃ¼¸¦ ÁÖÀÔÇÔ
 ```
 package me.dinosauruncle.chapter1;
 
@@ -71,15 +71,15 @@ public class Printer implements Runnable{
 }
 ```
 
-## Threadì˜ ì¼ì‹œ ì •ì§€
+## ThreadÀÇ ÀÏ½Ã Á¤Áö
 
-ê¸°ë³¸ê°œë…
+±âº»°³³ä
 ```
 Thread.sleep()
-sleepì˜ ì²«ë²ˆì§¸ ì¸ìž ë°€ë¦¬ì´ˆ, ë‘ë²ˆì§¸ ì¸ìž ë‚˜ë…¸ì´ˆ
+sleepÀÇ Ã¹¹øÂ° ÀÎÀÚ ¹Ð¸®ÃÊ, µÎ¹øÂ° ÀÎÀÚ ³ª³ëÃÊ
 ```
 
-ì½”ë“œì˜ˆì œ
+ÄÚµå¿¹Á¦
 
 ```
 package me.dinosauruncle.chapter1;
@@ -90,7 +90,7 @@ public class BMain {
 		for(int i=0; i < 10000; i++) {
 			System.out.println("Good!");
 			try {				
-				Thread.sleep(1000); // í•´ë‹¹ ì½”ë“œë¡œ ì¸í•´ 1ì´ˆì— í•œë²ˆì”© ì½˜ì†”ì— ë©”ì„¸ì§€ ì¶œë ¥ë¨ 
+				Thread.sleep(1000); // ÇØ´ç ÄÚµå·Î ÀÎÇØ 1ÃÊ¿¡ ÇÑ¹ø¾¿ ÄÜ¼Ö¿¡ ¸Þ¼¼Áö Ãâ·ÂµÊ 
 			} catch (InterruptedException e) {
 			}
 		}
@@ -100,47 +100,47 @@ public class BMain {
 }
 ```
 
-## Threadì˜ ë°°íƒ€ì œì–´
+## ThreadÀÇ ¹èÅ¸Á¦¾î
 
-### data race(ë°ì´í„° ë ˆì´ìŠ¤)
-ë³µìˆ˜ì˜ threadê°€ ë™ìž‘ ì‹¤í–‰ì‹œ í•œ thread ìž‘ì—…ì¤‘ ë‹¤ë¥¸ threadê°€ ìž‘ì—… ê°„ì„­ìœ¼ë¡œ ì¸í•œ ë¶ˆí•„ìš”í•œ ë°ì´í„°ë³€ê²½ì— ì˜í•œ í˜„ìƒ
-=> ì´ë¥¼ ë°©ì§€í•˜ê¸° ìœ„í•œ êµí†µì •ë¦¬ë¥¼ ë² íƒ€ì œì–´ í˜¹ì€ ìƒí˜¸ë² íƒ€(mutual exclusion)ë¼ê³  í•¨
-==> Javaì—ì„œëŠ” Thread ë² íƒ€ì œì–´ë¥¼ ì‹¤í–‰ í•  ë•Œ synchronized ë¼ëŠ” í‚¤ì›Œë“œë¥¼ ì‚¬ìš©í•¨
+### data race(µ¥ÀÌÅÍ ·¹ÀÌ½º)
+º¹¼öÀÇ thread°¡ µ¿ÀÛ ½ÇÇà½Ã ÇÑ thread ÀÛ¾÷Áß ´Ù¸¥ thread°¡ ÀÛ¾÷ °£¼·À¸·Î ÀÎÇÑ ºÒÇÊ¿äÇÑ µ¥ÀÌÅÍº¯°æ¿¡ ÀÇÇÑ Çö»ó
+=> ÀÌ¸¦ ¹æÁöÇÏ±â À§ÇÑ ±³ÅëÁ¤¸®¸¦ º£Å¸Á¦¾î È¤Àº »óÈ£º£Å¸(mutual exclusion)¶ó°í ÇÔ
+==> Java¿¡¼­´Â Thread º£Å¸Á¦¾î¸¦ ½ÇÇà ÇÒ ¶§ synchronized ¶ó´Â Å°¿öµå¸¦ »ç¿ëÇÔ
 
 
-### synchronized ë©”ì†Œë“œ(ë™ê¸° ë©”ì†Œë“œ)
-ë™ìž‘ì›ë¦¬: í•´ë‹¹í‚¤ì›Œë“œë¥¼ ë¶™ì—¬ì„œ ì„ ì–¸í•˜ë©´ ê·¸ ë©”ì†Œë“œëŠ” í•˜ë‚˜ì˜ threadë¡œ ë™ìž‘í•¨
-=> í•˜ë‚˜ì˜ threadë¡œ ë™ìž‘í•œë‹¤ê³  í•´ì„œ ì–´ë–¤ íŠ¹ì •í•œ thread ì™¸ì—ëŠ” ì‹¤í–‰í•  ìˆ˜ ì—†ë‹¤ëŠ” ì˜ë¯¸ê°€ ì•„ë‹ˆë¼ í•œë²ˆì— í•œê°œë§Œ ì‹¤í–‰í•¨
+### synchronized ¸Þ¼Òµå(µ¿±â ¸Þ¼Òµå)
+µ¿ÀÛ¿ø¸®: ÇØ´çÅ°¿öµå¸¦ ºÙ¿©¼­ ¼±¾ðÇÏ¸é ±× ¸Þ¼Òµå´Â ÇÏ³ªÀÇ thread·Î µ¿ÀÛÇÔ
+=> ÇÏ³ªÀÇ thread·Î µ¿ÀÛÇÑ´Ù°í ÇØ¼­ ¾î¶² Æ¯Á¤ÇÑ thread ¿Ü¿¡´Â ½ÇÇàÇÒ ¼ö ¾ø´Ù´Â ÀÇ¹Ì°¡ ¾Æ´Ï¶ó ÇÑ¹ø¿¡ ÇÑ°³¸¸ ½ÇÇàÇÔ
 
-### synchronized ë¸”ë¡
+### synchronized ºí·Ï
 
-ë½ì„ ì·¨í•˜ê³  ì¸ìŠ¤í„°ìŠ¤ì— ì‚¬ìš©í•¨
+¶ôÀ» ÃëÇÏ°í ÀÎ½ºÅÍ½º¿¡ »ç¿ëÇÔ
 
 
 ```
-synchronized(ì‹){
+synchronized(½Ä){
 	...
 }
 ```
 
-## Threadì˜ ìƒíƒœë³€í™˜
-Thread ìƒíƒœë³€í™˜ ëª…ë ¹ì–´: wait, notify, notifyAll
-waitëŠ” ëŒ€ê¸°ìƒíƒœë¡œ ë§Œë“¬,
-notifyëŠ” ìžì› ì‚¬ìš©ìžê°€ ì—†ìŒì„ ì•Œë¦¬ê³  ëŒ€ê¸°ìƒíƒœì—ì„œ ì‹¤í–‰ìƒíƒœë¡œ ë³€í™˜
-notifyAllì€ ëª¨ë“  ëŒ€ê¸°ìƒíƒœì— ìžˆëŠ” Threadì—ê²Œ ìžì›ì„ ì‚¬ìš©ì´ ê°€ëŠ¥í•˜ë‹¤ëŠ” ê²ƒì„ ì•Œë¦¼ 
+## ThreadÀÇ »óÅÂº¯È¯
+Thread »óÅÂº¯È¯ ¸í·É¾î: wait, notify, notifyAll
+wait´Â ´ë±â»óÅÂ·Î ¸¸µë,
+notify´Â ÀÚ¿ø »ç¿ëÀÚ°¡ ¾øÀ½À» ¾Ë¸®°í ´ë±â»óÅÂ¿¡¼­ ½ÇÇà»óÅÂ·Î º¯È¯
+notifyAllÀº ¸ðµç ´ë±â»óÅÂ¿¡ ÀÖ´Â Thread¿¡°Ô ÀÚ¿øÀ» »ç¿ëÀÌ °¡´ÉÇÏ´Ù´Â °ÍÀ» ¾Ë¸² 
 
-ëŒ€ê¸°ìƒíƒœì— ìžˆëŠ” ëª¨ë“  Threadì˜ ì§‘í•©ì„ wait set ì´ë¼ê³ í•¨
+´ë±â»óÅÂ¿¡ ÀÖ´Â ¸ðµç ThreadÀÇ ÁýÇÕÀ» wait set ÀÌ¶ó°íÇÔ
 
-### Wait ë©”ì†Œë“œ
-wait ë©”ì†Œë“œëŠ” ë™ìž‘ê°€ëŠ¥í•œ Threadë¥¼ ëŒ€ê¸°ìƒíƒœë¡œ ë§Œë“ ë‹¤ => wait setì— Threadë¥¼ ë„£ìŒ
+### Wait ¸Þ¼Òµå
+wait ¸Þ¼Òµå´Â µ¿ÀÛ°¡´ÉÇÑ Thread¸¦ ´ë±â»óÅÂ·Î ¸¸µç´Ù => wait set¿¡ Thread¸¦ ³ÖÀ½
 
-### notify ë©”ì†Œë“œ
-wait setì— ìžˆëŠ” ëŒ€ê¸°ìƒíƒœì— ìžˆëŠ” Threadë¥¼ êº¼ë‚´ì„œ ë™ìž‘ ê°€ëŠ¥í•˜ë„ë¡ ë§Œë“ ë‹¤.
+### notify ¸Þ¼Òµå
+wait set¿¡ ÀÖ´Â ´ë±â»óÅÂ¿¡ ÀÖ´Â Thread¸¦ ²¨³»¼­ µ¿ÀÛ °¡´ÉÇÏµµ·Ï ¸¸µç´Ù.
 
 
-# ë©€í‹° Thread í”„ë¡œê·¸ëž¨ì˜ í‰ê°€ê¸°ì¤€
-1) ì•ˆì •ì„±: ê°ì²´ë¥¼ ë§ê°€ëœ¨ë¦¬ì§€ ì•Šì„ ê²ƒ
-2) ìƒì¡´ì„±: í•„ìš”í•œ ì²˜ë¦¬ê°€ ì´ë¤„ì§ˆ ê²ƒ <-> ë°ë“œë½ì´ ì¼ì–´ë‚˜ëŠ” ê²ƒ
-3) ìž¬ì‚¬ìš©ì„±: í´ëž˜ìŠ¤ë¥¼ ë‹¤ì‹œ ì‚¬ìš©í•  ìˆ˜ ìžˆì„ ê²ƒ
-4) ìˆ˜í–‰ëŠ¥ë ¥: ê³ ì†Â·ëŒ€ëŸ‰ìœ¼ë¡œ ì²˜ë¦¬í•  ìˆ˜ ìžˆì„ ê²ƒ, ì‹œê°„ì´ ì§§ì„ìˆ˜ë¡(ì‘ë‹µì„±ì´ ì¢‹ì€)
+# ¸ÖÆ¼ Thread ÇÁ·Î±×·¥ÀÇ Æò°¡±âÁØ
+1) ¾ÈÁ¤¼º: °´Ã¼¸¦ ¸Á°¡¶ß¸®Áö ¾ÊÀ» °Í
+2) »ýÁ¸¼º: ÇÊ¿äÇÑ Ã³¸®°¡ ÀÌ·ïÁú °Í <-> µ¥µå¶ôÀÌ ÀÏ¾î³ª´Â °Í
+3) Àç»ç¿ë¼º: Å¬·¡½º¸¦ ´Ù½Ã »ç¿ëÇÒ ¼ö ÀÖÀ» °Í
+4) ¼öÇà´É·Â: °í¼Ó¡¤´ë·®À¸·Î Ã³¸®ÇÒ ¼ö ÀÖÀ» °Í, ½Ã°£ÀÌ ÂªÀ»¼ö·Ï(ÀÀ´ä¼ºÀÌ ÁÁÀº)
 
