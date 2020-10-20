@@ -7,7 +7,12 @@
 
 스레드 객체를 생성하는 방법은 두 가지가 있음
 ###  Thread 클래스를 상속받아서 스레드 클래스 생성
+
+AMain.java
+
 ```
+ 
+
 package me.dinosauruncle.chapter1;
 
 public class AMain {
@@ -21,7 +26,11 @@ public class AMain {
 
 ```
 
+MyThread.java
+
 ```
+
+
 package me.dinosauruncle.chapter1;
 
 public class MyThread extends Thread {
@@ -40,6 +49,10 @@ public class MyThread extends Thread {
 ```
 
 ### Runnable 인터페이스를 받아서 구현체로 구현 후 Thread 객체를 생성시 인자값으로 인터페이스 구현체를 주입함
+
+AMain.java
+
+
 ```
 package me.dinosauruncle.chapter1;
 
@@ -51,6 +64,9 @@ public class AMain {
 
 }
 ```
+
+Printer.java
+
 
 ```
 package me.dinosauruncle.chapter1;
@@ -79,7 +95,7 @@ Thread.sleep()
 sleep의 첫번째 인자 밀리초, 두번째 인자 나노초
 ```
 
-코드예제
+BMain.java
 
 ```
 package me.dinosauruncle.chapter1;
