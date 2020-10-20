@@ -1,5 +1,8 @@
 # Java Thread의 기본사용
 
+## 스레드란?
+프로그램을 실행하고 잇는 주체
+
 ## Thread 생성
 
 스레드 객체를 생성하는 방법은 두 가지가 있음
@@ -121,5 +124,23 @@ synchronized(식){
 ```
 
 ## Thread의 상태변환
+Thread 상태변환 명령어: wait, notify, notifyAll
+wait는 대기상태로 만듬,
+notify는 자원 사용자가 없음을 알리고 대기상태에서 실행상태로 변환
+notifyAll은 모든 대기상태에 있는 Thread에게 자원을 사용이 가능하다는 것을 알림 
 
-wait, notify, notifyAll
+대기상태에 있는 모든 Thread의 집합을 wait set 이라고함
+
+### Wait 메소드
+wait 메소드는 동작가능한 Thread를 대기상태로 만든다 => wait set에 Thread를 넣음
+
+### notify 메소드
+wait set에 있는 대기상태에 있는 Thread를 꺼내서 동작 가능하도록 만든다.
+
+
+# 멀티 Thread 프로그램의 평가기준
+1) 안정성: 객체를 망가뜨리지 않을 것
+2) 생존성: 필요한 처리가 이뤄질 것 <-> 데드락이 일어나는 것
+3) 재사용성: 클래스를 다시 사용할 수 있을 것
+4) 수행능력: 고속·대량으로 처리할 수 있을 것, 시간이 짧을수록(응답성이 좋은)
+
