@@ -35,3 +35,69 @@
 </table>
 
 Ch2AMain.java, Gate.java, UserThread.java 코드를 이용해서 만듬
+
+
+<h5>복수 쓰레드를 실행시 이름과 출신자의 첫글자가 같음에도 불구하고 불일치에 대한 내용이 콘솔에서 발생한다</h5>
+=> 복수 쓰레드 실행시 데이터 레이스를 하면서 데이터 간섭이 발생한다 
+
+문제가 되는 부분은 다음과 같다
+
+```
+package me.dinosauruncle.chapter2.singlethreadedexcution;
+
+public class Gate {
+	private int counter =0;
+	private String name = "Nobody";
+	private String address = "Nowhere";
+	public void pass(String name, String address) {
+		this.counter++;
+		this.name = name;
+		this.address = address;
+		check();
+	}
+	// 데이터 간섭이 발생하는 메소드 1
+	public String toString() {
+		return "No. " + counter + " : " +  name + ", " + address;
+	}
+
+	// 데이터 간섭이 발생하는 메소드 2	
+	private void check() {
+		if (name.charAt(0) != address.charAt(0)) {
+			System.out.println("*****BROKEN*****" + toString());
+		}
+	}
+
+}
+
+```
+
+## Single Threaded Execution 을 사용하는 예시
+
+toString과 check 메소드를 복수의 쓰레드가 동시에 사용할 경우 데이터가 꼬이게 되는 현상이 발생하게된다
+
+이를 방지하기 위해서(배타제어를 하기 위해서) 동기화처리를 하는 synchronized 표시를 메소드에 해야한다
+
+```
+	public synchronized void pass(String name, String address) {
+		this.counter++;
+		this.name = name;
+		this.address = address;
+		check();
+	}
+
+	public synchronized String toString() {
+		return "No. " + counter + " : " +  name + ", " + address;
+	}
+
+	// 데이터 간섭이 발생하는 메소드 2	
+	private synchronized void check() {
+		if (name.charAt(0) != address.charAt(0)) {
+			System.out.println("*****BROKEN*****" + toString());
+		}
+	}
+```
+ 
+ 메소드에 동기화 처리후 실행하면 추돌하는 메세지가 콘솔에서 사라졌음을 발견할 수 있다.
+
+ 
+ ###
