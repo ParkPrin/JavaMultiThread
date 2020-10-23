@@ -7,6 +7,11 @@
 
 절벽 위 일자 통나무 위에서 건너는 사람을 빗대서 만든 개념
 
+복수의 쓰레드가 공유하고 있는 인스턴스를 변경하면 인스턴스의 안정성을 보장할 수 없습니다.
+그래서 인스턴스 상태가 불안정해 지는 범위를 정한 다음, 그 범위를 크리티컬 센션으로 만듭니다.
+그리고 크리티켈 섹션은 한 개의 쓰레드만이 실행할 수 있도록 가드합니다
+Java에서는 synchronized를 사용하여 크리티컬 섹션을 만들어 복수의 쓰레드에서 공유하고 있는 필드를 가드합니다.
+
 ## Single Threaded Execution 을 사용하지 않는 예시
 
 ```
@@ -214,4 +219,111 @@ Log 영역, 별로중요하지 않음 (Log.java)
 	public static void println(String s) {
 		System.out.println(Thread.currentThread().getName() + ": " + s);
 	}
+```
+
+
+## 데드락 회피 문제
+
+<table>
+	<tr>
+		<td>이름</td>
+		<td>해설</td>
+	</tr>
+	<tr>
+		<td>Ch2CMain</td>
+		<td>스푼과 포크를 준비하고 Alice와 Bobby를 움직이는 클래스</td>
+	</tr>
+	<tr>
+		<td>Tool</td>
+		<td>식기(스푼 또는 포크)를 나타내는 클래스</td>
+	</tr>
+	<tr>
+		<td>EaterThread</td>
+		<td>왼손에 식기를 집고 오른손에 식기를 잡고 식사하는 클래스</td>
+	</tr>
+</table>
+
+Ch2CMain.java, Tool.java, EaterThread.java 를 실행시키면 Thread 동작하다가 데드락에 걸린다
+데드락에 걸리지 않도록 코드를 수정하는 문제 
+
+Ch2CMain.java
+
+```
+
+	public static void main(String[] args) {
+		System.out.println("Testing EaterThread, hit CTRL+C to exit.");
+		Tool spoon = new Tool("Spoon");
+		Tool fork = new Tool("Fork");
+		new EaterThread("Alice", spoon, fork).start();
+		new EaterThread("Bobby", fork, spoon).start();
+	}
+
+```
+
+Tool.java
+
+```
+	private final String name;
+	public Tool(String name) {
+		this.name = name;
+	}
+	public String toString() {
+		return "[ " + name + " ]";
+	}
+```
+
+EaterThread.java
+
+```
+	private String name;
+	private final Tool lefthand;
+	private final Tool righthand;
+	public EaterThread(String name, Tool lefthand, Tool righthand) {
+		this.name = name;
+		this.lefthand = lefthand;
+		this.righthand = righthand;
+	}
+	
+	public void run() {
+		while (true) {
+			eat();
+		}
+	}
+
+	public void eat() {
+		synchronized (lefthand) {
+			System.out.println(name + " takes up " + lefthand + " (left).");
+			synchronized (righthand) {
+				System.out.println(name + " takes up " + righthand + " (right).");
+				System.out.println(name + " is eating now, yum yum!");
+				System.out.println(name + " puts down " + righthand + "(right)");
+			}
+			System.out.println(name + " puts down " + lefthand + "(left)");
+		}
+	}
+
+
+```
+
+### 풀이
+현재 이 데드락이 발생하는 원인은 이중으로 배타제어를 하는 것과 이중 배타제어에서 다루는 자원이 서로 간섭이 일어나서 발생하는 문제이다
+그러므로 두 자원에 대한 각각의 배타제어를 걸지 말고 하나의 배타제어를 통해서 두 자원을 동시에 락을 걸 수 있도록 코드를 수정해야 한다
+메소드에만 synchronized를 설정한다.
+
+EaterThread.java
+
+```
+
+	... 다른 코드들은 동일 
+
+	public synchronized void eat() {
+		
+		System.out.println(name + " takes up " + lefthand + " (left).");
+		System.out.println(name + " takes up " + righthand + " (right).");
+		System.out.println(name + " is eating now, yum yum!");
+		System.out.println(name + " puts down " + righthand + "(right)");
+		System.out.println(name + " puts down " + lefthand + "(left)");
+	
+	}
+
 ```
