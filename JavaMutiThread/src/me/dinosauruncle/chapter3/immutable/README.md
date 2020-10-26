@@ -193,4 +193,78 @@ class Something {
 java의 컬렉션은 대부분 thread safe가 아니다.
 => multi thread 사용하고자 하는 클래스나 인터페이스가 thread safe인지 확인하는 것이 중요
 
+## Collections.synchronizedList 메소드에 의한 동기화
+
+Collections.synchronizedList 메소드를 사용하여 동기화하면 쓰레드 세이프한 인스턴스를 확보할 수 있다
+
+### Collections.synchronizedList 예제
+
+Ch3BMain.java
+
+```
+public class Ch3BMain {
+	public static void main(String[] args) {
+		final List<Integer> list = Collections.synchronizedList(new ArrayList<Integer>());
+		new WriterThread(list).start();
+		new ReaderThread(list).start();
+	}
+}
+```
+
+WriterThread.java
+
+```
+public class WriterThread extends Thread {
+	private final List<Integer> list;
+	public WriterThread(List<Integer> list) {
+		super("WriterThread");
+		this.list = list;
+	}
+	
+	@Override
+	public void run() {
+		for (int i = 0; true; i++) {
+			list.add(i);
+			list.remove(0);
+		}
+	}
+}
+
+```
+
+ReaderThread.java
+
+```
+public class ReaderThread extends Thread {
+	private final List<Integer> list;
+	public ReaderThread(List<Integer> list) {
+		super("ReaderThread");
+		this.list = list;
+	}
+	
+	@Override
+	public void run() {
+		while (true) {
+			synchronized (list) {
+				for (int n : list) {
+					System.out.println(n);
+				}
+			}
+		}
+	}
+}
+```
+
+## 카피 온 라이트를 사용한 java.util.concurrent.CopyOnWriteArrayList 클래스
+
+Collections.synchronizedList 메소드를 사용하여 동기화시키는 것과 달리
+카피 온 라이트(copy-on-write)라고 하는 시스템을 이용해 읽고 쓰기의 충돌을 억제한다
+
+카피 온 라이트란 [적을 때에 복사한다]는 의미이며 카피 온 라이트에서는 컬렉션에 대하여
+쓰기 조작을 하면 내부에 확보된 배열을 통째로 복사한다. 복사를 하게 되면 이터레이터를
+사용하여 요소를 순서대로 읽어가는 도중에 요소가 변경될 염려가 없다.
+
+### 예제
+
+
 
