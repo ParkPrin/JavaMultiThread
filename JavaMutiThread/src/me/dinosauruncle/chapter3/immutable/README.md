@@ -1,33 +1,33 @@
-# Immutable ÆÐÅÏ
+# Immutable íŒ¨í„´
 
-## Immutable ÆÐÅÏÀÌ¶õ?
+## Immutable íŒ¨í„´ì´ëž€?
 
-ImmutableÀº [ºÒÆíÀÇ], [º¯ÇÏ´Â °ÍÀÌ ¾ø´Â] ÀÌ¶ó´Â ¶æÀ» °¡Áü<br>
-Immutable ÆÐÅÏ¿¡´Â ÀÎ½ºÅÏ½ºÀÇ »óÅÂ°¡ Àý´ë º¯ÇÏÁö ¾Ê´Â Å¬·¡½º°¡ µîÀåÇÑ´Ù.<br>
-±× ÀÎ½ºÅÏ½ºÀÇ ¾×¼¼½º¿¡´Â ½Ã°£ÀÌ °É¸®´Â ¹èÅ¸Á¦¾î°¡ ºÒÇÊ¿äÇÏ±â ¶§¹®¿¡ Àß »ç¿ëÇÏ¸é ¼öÇà´É·ÂÀ» ³ôÀÏ ¼ö ÀÖ´Ù<br>
+Immutableì€ [ë¶ˆíŽ¸ì˜], [ë³€í•˜ëŠ” ê²ƒì´ ì—†ëŠ”] ì´ë¼ëŠ” ëœ»ì„ ê°€ì§<br>
+Immutable íŒ¨í„´ì—ëŠ” ì¸ìŠ¤í„´ìŠ¤ì˜ ìƒíƒœê°€ ì ˆëŒ€ ë³€í•˜ì§€ ì•ŠëŠ” í´ëž˜ìŠ¤ê°€ ë“±ìž¥í•œë‹¤.<br>
+ê·¸ ì¸ìŠ¤í„´ìŠ¤ì˜ ì•¡ì„¸ìŠ¤ì—ëŠ” ì‹œê°„ì´ ê±¸ë¦¬ëŠ” ë°°íƒ€ì œì–´ê°€ ë¶ˆí•„ìš”í•˜ê¸° ë•Œë¬¸ì— ìž˜ ì‚¬ìš©í•˜ë©´ ìˆ˜í–‰ëŠ¥ë ¥ì„ ë†’ì¼ ìˆ˜ ìžˆë‹¤<br>
 
-## ¿¹½Ã
+## ì˜ˆì‹œ
 
 <table>
 	<tr>
-		<td>ÀÌ¸§</td>
-		<td>ÇØ¼³</td>
+		<td>ì´ë¦„</td>
+		<td>í•´ì„¤</td>
 	</tr>
 	<tr>
 		<td>Person</td>
-		<td>»ç¶÷À» ³ªÅ¸³»´Â Å¬·¡½º</td>
+		<td>ì‚¬ëžŒì„ ë‚˜íƒ€ë‚´ëŠ” í´ëž˜ìŠ¤</td>
 	</tr>
 	<tr>
 		<td>Ch3AMain</td>
-		<td>µ¿ÀÛ Å×½ºÆ®¿ë Å¬·¡½º</td>
+		<td>ë™ìž‘ í…ŒìŠ¤íŠ¸ìš© í´ëž˜ìŠ¤</td>
 	</tr>
 	<tr>
 		<td>PrintPersonThread</td>
-		<td>Person ÀÎ½ºÅÏ½º¸¦ Ç¥½ÃÇÏ´Â thread¸¦ ³ªÅ¸³»´Â Å¬·¡½º</td>
+		<td>Person ì¸ìŠ¤í„´ìŠ¤ë¥¼ í‘œì‹œí•˜ëŠ” threadë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ëž˜ìŠ¤</td>
 	</tr>
 </table>
 
-### ¿¹½Ã ÄÚµå
+### ì˜ˆì‹œ ì½”ë“œ
 
 Person.java
 
@@ -59,7 +59,7 @@ Ch3AMain.java
 
 ```
 	public static void main(String[] args) {
-		// ºÒº¯ÀÇ °´Ã¼¸¦ °øÀ¯ÀÚ¿øÀ¸·Î »ç¿ëÇÔ
+		// ë¶ˆë³€ì˜ ê°ì²´ë¥¼ ê³µìœ ìžì›ìœ¼ë¡œ ì‚¬ìš©í•¨
 		Person alice = new Person("Alice", "Alaska");
 		
 		new PrintPersonThread(alice).start();
@@ -74,49 +74,49 @@ PrintPersonThread.java
 ```
 public class PrintPersonThread extends Thread {
 	private Person person;
-	// °´Ã¼ ÀÚÃ¼°¡ final·Î Á¤ÀÇµÈ ºÒÆí °´Ã¼ÀÌ±â ¶§¹®¿¡ synchronized¸¦ ÇÏÁö ¾Ê¾Æµµ µ¥ÀÌÅÍ °£¼·ÀÌ ¹ß»ýÇÏÁö ¾Ê´Â´Ù
-	// synchronized°¡ ºÒÇÊ¿äÇÔ
+	// ê°ì²´ ìžì²´ê°€ finalë¡œ ì •ì˜ëœ ë¶ˆíŽ¸ ê°ì²´ì´ê¸° ë•Œë¬¸ì— synchronizedë¥¼ í•˜ì§€ ì•Šì•„ë„ ë°ì´í„° ê°„ì„­ì´ ë°œìƒí•˜ì§€ ì•ŠëŠ”ë‹¤
+	// synchronizedê°€ ë¶ˆí•„ìš”í•¨
 	public PrintPersonThread(Person person) {
 		this.person = person;
 	}
 	
 	public void run() {
 		while (true) {
-			// Thread.currentThread().getNameÀº ÀÚ±â threadÀÇ ÀÌ¸§À» ±¸ÇÒ ¶§ »ç¿ëÇÑ´Ù
-			// Thread.currentThread()´Â ÇöÀçÀÇ thread ±¸ÇÏ´Â ¸Þ¼ÒµåÀÌ´Ù.
+			// Thread.currentThread().getNameì€ ìžê¸° threadì˜ ì´ë¦„ì„ êµ¬í•  ë•Œ ì‚¬ìš©í•œë‹¤
+			// Thread.currentThread()ëŠ” í˜„ìž¬ì˜ thread êµ¬í•˜ëŠ” ë©”ì†Œë“œì´ë‹¤.
 			System.out.println(Thread.currentThread().getName() + "prints" + person);
 		}
 	}
 }
 ```
 
-## single threaded execution°ú immutable ÆÐÅÏ°úÀÇ ºñ±³
+## single threaded executionê³¼ immutable íŒ¨í„´ê³¼ì˜ ë¹„êµ
 
-single threaded execution°ú immutable µÎ ÆÐÅÏ°úÀÇ °øÅëÁ¡ thread¿Í °ø¿ëÀÚ¿øÀ» »ç¿ëÇÏ´Â °ÍÀÌ´Ù
-±×·¯³ª °¡Àå Å« Â÷ÀÌÁ¡Àº single threaded executionÀº °ø¿ëÀÚ¿øÀÌ º¹¼öÀÇ thread°¡ »ç¿ëÇÒ ¶§¸¶´Ù
-°ø¿ëÀÚ¿ø°´Ã¼ ³»ºÎÀÇ º¯°æÀÌ ÀÏ¾î³ªÁö¸¸, immutableÀº °ø¿ëÀÚ¿ø°´Ã¼ÀÇ º¯°æÀÌ ¾ø´Ù´Â °ÍÀÌ´Ù.
-±×·¡¼­ °ø¿ëÀÚ¿ø°´Ã¼ÀÇ ³»ºÎ º¯°æÀÌ ÀÏ¾î³¯ ¶§ µ¥ÀÌÅÍ °£¼·ÀÇ ÀÇÇÑ µ¥ÀÌÅÍ ¹«°á¼ºÀÌ ±úÁöÁö¸¸, °´Ã¼ º¯°æÀÌ ºÒ°¡ÇÏ´Ù¸é
-¾Æ¹«¸® ¸¹Àº ¾çÀÇ thread°¡ ºÒº¯ÀÇ °´Ã¼¸¦ °ø¿ëÀÚ¿øÀ¸·Î »ç¿ëÇÏ´õ¶óµµ µ¥ÀÌÅÍ °£¼·ÀÌ ¹ß»ýÇÏÁö ¾ÊÀ¸¹Ç·Î
-¹èÅ¸Á¦¾î Ã³¸®¸¦ ÇÏÁö ¾Ê¾Æµµ µÈ´Ù. ÀÌ·Î½á ¾ÈÀü¼º°ú »ýÁ¸¼ºÀ» ÀÒ¾î¹ö¸®Áö ¾Ê°íµµ ¼öÇà ´É·ÂÀ» ³ôÀÏ ¼ö ÀÖ´Ù.
+single threaded executionê³¼ immutable ë‘ íŒ¨í„´ê³¼ì˜ ê³µí†µì  threadì™€ ê³µìš©ìžì›ì„ ì‚¬ìš©í•˜ëŠ” ê²ƒì´ë‹¤
+ê·¸ëŸ¬ë‚˜ ê°€ìž¥ í° ì°¨ì´ì ì€ single threaded executionì€ ê³µìš©ìžì›ì´ ë³µìˆ˜ì˜ threadê°€ ì‚¬ìš©í•  ë•Œë§ˆë‹¤
+ê³µìš©ìžì›ê°ì²´ ë‚´ë¶€ì˜ ë³€ê²½ì´ ì¼ì–´ë‚˜ì§€ë§Œ, immutableì€ ê³µìš©ìžì›ê°ì²´ì˜ ë³€ê²½ì´ ì—†ë‹¤ëŠ” ê²ƒì´ë‹¤.
+ê·¸ëž˜ì„œ ê³µìš©ìžì›ê°ì²´ì˜ ë‚´ë¶€ ë³€ê²½ì´ ì¼ì–´ë‚  ë•Œ ë°ì´í„° ê°„ì„­ì˜ ì˜í•œ ë°ì´í„° ë¬´ê²°ì„±ì´ ê¹¨ì§€ì§€ë§Œ, ê°ì²´ ë³€ê²½ì´ ë¶ˆê°€í•˜ë‹¤ë©´
+ì•„ë¬´ë¦¬ ë§Žì€ ì–‘ì˜ threadê°€ ë¶ˆë³€ì˜ ê°ì²´ë¥¼ ê³µìš©ìžì›ìœ¼ë¡œ ì‚¬ìš©í•˜ë”ë¼ë„ ë°ì´í„° ê°„ì„­ì´ ë°œìƒí•˜ì§€ ì•Šìœ¼ë¯€ë¡œ
+ë°°íƒ€ì œì–´ ì²˜ë¦¬ë¥¼ í•˜ì§€ ì•Šì•„ë„ ëœë‹¤. ì´ë¡œì¨ ì•ˆì „ì„±ê³¼ ìƒì¡´ì„±ì„ ìžƒì–´ë²„ë¦¬ì§€ ì•Šê³ ë„ ìˆ˜í–‰ ëŠ¥ë ¥ì„ ë†’ì¼ ìˆ˜ ìžˆë‹¤.
 
 
-## ¾î¶³ ¶§ »ç¿ëÇÒ±î? [Àû¿ë °¡´É¼º]
+## ì–´ë–¨ ë•Œ ì‚¬ìš©í• ê¹Œ? [ì ìš© ê°€ëŠ¥ì„±]
 
-1. ÀÎ½ºÅÏ½º »ý¼º ÈÄ »óÅÂ°¡ º¯ÇÏÁö ¾ÊÀ» ¶§
-2. ÀÎ½ºÅÏ½º°¡ °øÀ¯µÇ¾î ºó¹øÇÏ°Ô ¾×¼¼½º µÉ ¶§
+1. ì¸ìŠ¤í„´ìŠ¤ ìƒì„± í›„ ìƒíƒœê°€ ë³€í•˜ì§€ ì•Šì„ ë•Œ
+2. ì¸ìŠ¤í„´ìŠ¤ê°€ ê³µìœ ë˜ì–´ ë¹ˆë²ˆí•˜ê²Œ ì•¡ì„¸ìŠ¤ ë  ë•Œ
 
-## Ç¥ÁØ Å¬·¡½º ¶óÀÌºê·¯¸®¿¡¼­ »ç¿ëµÇ´Â Immutable ÆÐÅÏ
+## í‘œì¤€ í´ëž˜ìŠ¤ ë¼ì´ë¸ŒëŸ¬ë¦¬ì—ì„œ ì‚¬ìš©ë˜ëŠ” Immutable íŒ¨í„´
 
-1. ¹®ÀÚ¿­À» ³ªÅ¸³»´Â java.lnag.String Å¬·¡½º
-2. Å« ¼ö¸¦ ³ªÅ¸³»´Â java.math.BigInteger Å¬·¡½º
-3. Á¤±Ô Ç¥ÇöÀÇ ÆÐÅÏÀ» ³ªÅ¸³»´Â java.util.regex.Pattern Å¬·¡½º
-4. »öÀ» Ç¥ÇöÇÏ´Â java.awt.Color
+1. ë¬¸ìžì—´ì„ ë‚˜íƒ€ë‚´ëŠ” java.lnag.String í´ëž˜ìŠ¤
+2. í° ìˆ˜ë¥¼ ë‚˜íƒ€ë‚´ëŠ” java.math.BigInteger í´ëž˜ìŠ¤
+3. ì •ê·œ í‘œí˜„ì˜ íŒ¨í„´ì„ ë‚˜íƒ€ë‚´ëŠ” java.util.regex.Pattern í´ëž˜ìŠ¤
+4. ìƒ‰ì„ í‘œí˜„í•˜ëŠ” java.awt.Color
 5. java.lang.Integer
 
 <table>
 	<tr>
-		<td>±âº»Çü</td>
-		<td>·¦ÆÛ Å¬·¡½º</td>
+		<td>ê¸°ë³¸í˜•</td>
+		<td>ëž©í¼ í´ëž˜ìŠ¤</td>
 	</tr>
 	<tr>
 		<td>boolean</td>
@@ -159,26 +159,26 @@ single threaded execution°ú immutable µÎ ÆÐÅÏ°úÀÇ °øÅëÁ¡ thread¿Í °ø¿ëÀÚ¿øÀ» »ç¿
 
 ## final
 
-### finalÀÇ ÀÇ¹Ì
+### finalì˜ ì˜ë¯¸
 
-#### final Å¬·¡½º
-Å¬·¡½º¿¡ finalÀÌ ¼±¾ðµÈ °æ¿ì ±× Å¬·¡½º´Â È®ÀåÇÒ ¼ö ¾ø°í °á±¹ finalÇÑ Å¬·¡½ºÀÇ ¼­ºê Å¬·¡½º´Â ¸¸µé ¼ö ¾ø´Ù.
+#### final í´ëž˜ìŠ¤
+í´ëž˜ìŠ¤ì— finalì´ ì„ ì–¸ëœ ê²½ìš° ê·¸ í´ëž˜ìŠ¤ëŠ” í™•ìž¥í•  ìˆ˜ ì—†ê³  ê²°êµ­ finalí•œ í´ëž˜ìŠ¤ì˜ ì„œë¸Œ í´ëž˜ìŠ¤ëŠ” ë§Œë“¤ ìˆ˜ ì—†ë‹¤.
 
-#### final ¸Þ¼Òµå
-ÀÎ½ºÅÏ½º ¸Þ¼Òµå¿¡ finalÀÌ ¼±¾ðµÈ °æ¿ì ±× ¸Þ¼Òµå´Â ¼­ºê Å¬·¡½ºÀÇ ¸Þ¼Òµå·Î ¿À¹ö¶óÀÌµå µÉ ¼ö ¾ø´Ù.
+#### final ë©”ì†Œë“œ
+ì¸ìŠ¤í„´ìŠ¤ ë©”ì†Œë“œì— finalì´ ì„ ì–¸ëœ ê²½ìš° ê·¸ ë©”ì†Œë“œëŠ” ì„œë¸Œ í´ëž˜ìŠ¤ì˜ ë©”ì†Œë“œë¡œ ì˜¤ë²„ë¼ì´ë“œ ë  ìˆ˜ ì—†ë‹¤.
 
-#### final ÇÊµå
-finalÇÑ ÇÊµå¿¡´Â ÇÑ ¹ø ¹Û¿¡ ´ëÀÔÇÒ ¼ö ¾ø´Ù.
-´ëÀÔ¿¡´Â µÎ°¡Áö ¹æ¹ýÀÌ ÀÖ´Ù
+#### final í•„ë“œ
+finalí•œ í•„ë“œì—ëŠ” í•œ ë²ˆ ë°–ì— ëŒ€ìž…í•  ìˆ˜ ì—†ë‹¤.
+ëŒ€ìž…ì—ëŠ” ë‘ê°€ì§€ ë°©ë²•ì´ ìžˆë‹¤
 
 ```
-// ¼±¾ð°ú µ¿½Ã¿¡ ´ëÀÔÇÏ´Â ¹æ¹ý
+// ì„ ì–¸ê³¼ ë™ì‹œì— ëŒ€ìž…í•˜ëŠ” ë°©ë²•
 final int value = 123;
 ```
 
 ```
 class Something {
-	// ¼±¾ðÀ» ÇÏ°í ´ëÀÔÀº »ý¼ºÀÚ¿¡¼­ ÇÏ´Â ¹æ¹ý
+	// ì„ ì–¸ì„ í•˜ê³  ëŒ€ìž…ì€ ìƒì„±ìžì—ì„œ í•˜ëŠ” ë°©ë²•
 	final int value;
 	public Something(int value){
 		this.value = value;
@@ -188,16 +188,16 @@ class Something {
 
 ```
 
-## ÄÃ·º¼Ç Å¬·¡½º¿Í multi thread
-ÄÃ·º¼ÇÀÌ¶õ º¹¼öÀÇ ÀÎ½ºÅÏ½º¸¦ °ü¸®ÇÏ´Â ÀÎÅÍÆäÀÌ½º³ª Å¬·¡½º¿¡ ´ëÇÑ ÃÑÄª
-javaÀÇ ÄÃ·º¼ÇÀº ´ëºÎºÐ thread safe°¡ ¾Æ´Ï´Ù.
-=> multi thread »ç¿ëÇÏ°íÀÚ ÇÏ´Â Å¬·¡½º³ª ÀÎÅÍÆäÀÌ½º°¡ thread safeÀÎÁö È®ÀÎÇÏ´Â °ÍÀÌ Áß¿ä
+## ì»¬ë ‰ì…˜ í´ëž˜ìŠ¤ì™€ multi thread
+ì»¬ë ‰ì…˜ì´ëž€ ë³µìˆ˜ì˜ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ê´€ë¦¬í•˜ëŠ” ì¸í„°íŽ˜ì´ìŠ¤ë‚˜ í´ëž˜ìŠ¤ì— ëŒ€í•œ ì´ì¹­
+javaì˜ ì»¬ë ‰ì…˜ì€ ëŒ€ë¶€ë¶„ thread safeê°€ ì•„ë‹ˆë‹¤.
+=> multi thread ì‚¬ìš©í•˜ê³ ìž í•˜ëŠ” í´ëž˜ìŠ¤ë‚˜ ì¸í„°íŽ˜ì´ìŠ¤ê°€ thread safeì¸ì§€ í™•ì¸í•˜ëŠ” ê²ƒì´ ì¤‘ìš”
 
-## Collections.synchronizedList ¸Þ¼Òµå¿¡ ÀÇÇÑ µ¿±âÈ­
+## Collections.synchronizedList ë©”ì†Œë“œì— ì˜í•œ ë™ê¸°í™”
 
-Collections.synchronizedList ¸Þ¼Òµå¸¦ »ç¿ëÇÏ¿© µ¿±âÈ­ÇÏ¸é ¾²·¹µå ¼¼ÀÌÇÁÇÑ ÀÎ½ºÅÏ½º¸¦ È®º¸ÇÒ ¼ö ÀÖ´Ù
+Collections.synchronizedList ë©”ì†Œë“œë¥¼ ì‚¬ìš©í•˜ì—¬ ë™ê¸°í™”í•˜ë©´ ì“°ë ˆë“œ ì„¸ì´í”„í•œ ì¸ìŠ¤í„´ìŠ¤ë¥¼ í™•ë³´í•  ìˆ˜ ìžˆë‹¤
 
-### Collections.synchronizedList ¿¹Á¦
+### Collections.synchronizedList ì˜ˆì œ
 
 Ch3BMain.java
 
@@ -255,16 +255,16 @@ public class ReaderThread extends Thread {
 }
 ```
 
-## Ä«ÇÇ ¿Â ¶óÀÌÆ®¸¦ »ç¿ëÇÑ java.util.concurrent.CopyOnWriteArrayList Å¬·¡½º
+## ì¹´í”¼ ì˜¨ ë¼ì´íŠ¸ë¥¼ ì‚¬ìš©í•œ java.util.concurrent.CopyOnWriteArrayList í´ëž˜ìŠ¤
 
-Collections.synchronizedList ¸Þ¼Òµå¸¦ »ç¿ëÇÏ¿© µ¿±âÈ­½ÃÅ°´Â °Í°ú ´Þ¸®
-Ä«ÇÇ ¿Â ¶óÀÌÆ®(copy-on-write)¶ó°í ÇÏ´Â ½Ã½ºÅÛÀ» ÀÌ¿ëÇØ ÀÐ°í ¾²±âÀÇ Ãæµ¹À» ¾ïÁ¦ÇÑ´Ù
+Collections.synchronizedList ë©”ì†Œë“œë¥¼ ì‚¬ìš©í•˜ì—¬ ë™ê¸°í™”ì‹œí‚¤ëŠ” ê²ƒê³¼ ë‹¬ë¦¬
+ì¹´í”¼ ì˜¨ ë¼ì´íŠ¸(copy-on-write)ë¼ê³  í•˜ëŠ” ì‹œìŠ¤í…œì„ ì´ìš©í•´ ì½ê³  ì“°ê¸°ì˜ ì¶©ëŒì„ ì–µì œí•œë‹¤
 
-Ä«ÇÇ ¿Â ¶óÀÌÆ®¶õ [ÀûÀ» ¶§¿¡ º¹»çÇÑ´Ù]´Â ÀÇ¹ÌÀÌ¸ç Ä«ÇÇ ¿Â ¶óÀÌÆ®¿¡¼­´Â ÄÃ·º¼Ç¿¡ ´ëÇÏ¿©
-¾²±â Á¶ÀÛÀ» ÇÏ¸é ³»ºÎ¿¡ È®º¸µÈ ¹è¿­À» ÅëÂ°·Î º¹»çÇÑ´Ù. º¹»ç¸¦ ÇÏ°Ô µÇ¸é ÀÌÅÍ·¹ÀÌÅÍ¸¦
-»ç¿ëÇÏ¿© ¿ä¼Ò¸¦ ¼ø¼­´ë·Î ÀÐ¾î°¡´Â µµÁß¿¡ ¿ä¼Ò°¡ º¯°æµÉ ¿°·Á°¡ ¾ø´Ù.
+ì¹´í”¼ ì˜¨ ë¼ì´íŠ¸ëž€ [ì ì„ ë•Œì— ë³µì‚¬í•œë‹¤]ëŠ” ì˜ë¯¸ì´ë©° ì¹´í”¼ ì˜¨ ë¼ì´íŠ¸ì—ì„œëŠ” ì»¬ë ‰ì…˜ì— ëŒ€í•˜ì—¬
+ì“°ê¸° ì¡°ìž‘ì„ í•˜ë©´ ë‚´ë¶€ì— í™•ë³´ëœ ë°°ì—´ì„ í†µì§¸ë¡œ ë³µì‚¬í•œë‹¤. ë³µì‚¬ë¥¼ í•˜ê²Œ ë˜ë©´ ì´í„°ë ˆì´í„°ë¥¼
+ì‚¬ìš©í•˜ì—¬ ìš”ì†Œë¥¼ ìˆœì„œëŒ€ë¡œ ì½ì–´ê°€ëŠ” ë„ì¤‘ì— ìš”ì†Œê°€ ë³€ê²½ë  ì—¼ë ¤ê°€ ì—†ë‹¤.
 
-### ¿¹Á¦
+### ì˜ˆì œ
 
 
 

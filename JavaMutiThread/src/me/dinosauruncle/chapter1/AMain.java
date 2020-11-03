@@ -3,7 +3,7 @@ package me.dinosauruncle.chapter1;
 public class AMain {
 
 	/**
-	 * 1) Thread Å¬·¡½º¸¦ »ó¼Ó¹Ş¾Æ¼­ ½º·¹µå Å¬·¡½º »ı¼º
+	 * 1) Thread í´ë˜ìŠ¤ë¥¼ ìƒì†ë°›ì•„ì„œ ìŠ¤ë ˆë“œ í´ë˜ìŠ¤ ìƒì„±
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -13,11 +13,11 @@ public class AMain {
 		 */
 		
 		
-		// Thread Å¬·¡½º¸¦ »ó¼Ó¹Ş¾Æ¼­ ½º·¹µå Å¬·¡½º »ı¼º
+		// Thread í´ë˜ìŠ¤ë¥¼ ìƒì†ë°›ì•„ì„œ ìŠ¤ë ˆë“œ í´ë˜ìŠ¤ ìƒì„±
 //		new MyThread("Good!").start();
 //		new MyThread("Nice!").start();
 		
-		// Runnable ÀÎÅÍÆäÀÌ½º¸¦ ¹Ş¾Æ¼­ ±¸ÇöÃ¼·Î ±¸Çö ÈÄ Thread °´Ã¼¸¦ »ı¼º½Ã ÀÎÀÚ°ªÀ¸·Î ÀÎÅÍÆäÀÌ½º ±¸ÇöÃ¼¸¦ ÁÖÀÔÇÔ
+		// Runnable ì¸í„°í˜ì´ìŠ¤ë¥¼ ë°›ì•„ì„œ êµ¬í˜„ì²´ë¡œ êµ¬í˜„ í›„ Thread ê°ì²´ë¥¼ ìƒì„±ì‹œ ì¸ìê°’ìœ¼ë¡œ ì¸í„°í˜ì´ìŠ¤ êµ¬í˜„ì²´ë¥¼ ì£¼ì…í•¨
 		new Thread(new Printer("Good!")).start();
 		new Thread(new Printer("Nice!")).start();
 		

@@ -1,51 +1,51 @@
-# Single Threaded Execution ÆÐÅÏ
+# Single Threaded Execution íŒ¨í„´
 
-## Single Threaded Execution ÆÐÅÏÀÌ¶õ?
+## Single Threaded Execution íŒ¨í„´ì´ëž€?
 
-ÇÑ °³ÀÇ ¾²·¹µå¿¡ ÀÇÇÑ ½ÇÇà => ¸ÖÆ¼ ¾²·¹µå ÇÁ·Î±×·¡¹ÖÀÇ ±âÃÊ
-´Ù¸¥ ¸íÄªÀ¸·Î´Â Critical Section(¾Æ½½¾Æ½½ÇÑ ¿µ¿ª, À§Çè ±¸¿ª) È¤Àº Critical Region
+í•œ ê°œì˜ ì“°ë ˆë“œì— ì˜í•œ ì‹¤í–‰ => ë©€í‹° ì“°ë ˆë“œ í”„ë¡œê·¸ëž˜ë°ì˜ ê¸°ì´ˆ
+ë‹¤ë¥¸ ëª…ì¹­ìœ¼ë¡œëŠ” Critical Section(ì•„ìŠ¬ì•„ìŠ¬í•œ ì˜ì—­, ìœ„í—˜ êµ¬ì—­) í˜¹ì€ Critical Region
 
-Àýº® À§ ÀÏÀÚ Åë³ª¹« À§¿¡¼­ °Ç³Ê´Â »ç¶÷À» ºø´ë¼­ ¸¸µç °³³ä
+ì ˆë²½ ìœ„ ì¼ìž í†µë‚˜ë¬´ ìœ„ì—ì„œ ê±´ë„ˆëŠ” ì‚¬ëžŒì„ ë¹—ëŒ€ì„œ ë§Œë“  ê°œë…
 
-º¹¼öÀÇ ¾²·¹µå°¡ °øÀ¯ÇÏ°í ÀÖ´Â ÀÎ½ºÅÏ½º¸¦ º¯°æÇÏ¸é ÀÎ½ºÅÏ½ºÀÇ ¾ÈÁ¤¼ºÀ» º¸ÀåÇÒ ¼ö ¾ø½À´Ï´Ù.
-±×·¡¼­ ÀÎ½ºÅÏ½º »óÅÂ°¡ ºÒ¾ÈÁ¤ÇØ Áö´Â ¹üÀ§¸¦ Á¤ÇÑ ´ÙÀ½, ±× ¹üÀ§¸¦ Å©¸®Æ¼ÄÃ ¼¾¼ÇÀ¸·Î ¸¸µì´Ï´Ù.
-±×¸®°í Å©¸®Æ¼ÄÌ ¼½¼ÇÀº ÇÑ °³ÀÇ ¾²·¹µå¸¸ÀÌ ½ÇÇàÇÒ ¼ö ÀÖµµ·Ï °¡µåÇÕ´Ï´Ù
-Java¿¡¼­´Â synchronized¸¦ »ç¿ëÇÏ¿© Å©¸®Æ¼ÄÃ ¼½¼ÇÀ» ¸¸µé¾î º¹¼öÀÇ ¾²·¹µå¿¡¼­ °øÀ¯ÇÏ°í ÀÖ´Â ÇÊµå¸¦ °¡µåÇÕ´Ï´Ù.
+ë³µìˆ˜ì˜ ì“°ë ˆë“œê°€ ê³µìœ í•˜ê³  ìžˆëŠ” ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë³€ê²½í•˜ë©´ ì¸ìŠ¤í„´ìŠ¤ì˜ ì•ˆì •ì„±ì„ ë³´ìž¥í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+ê·¸ëž˜ì„œ ì¸ìŠ¤í„´ìŠ¤ ìƒíƒœê°€ ë¶ˆì•ˆì •í•´ ì§€ëŠ” ë²”ìœ„ë¥¼ ì •í•œ ë‹¤ìŒ, ê·¸ ë²”ìœ„ë¥¼ í¬ë¦¬í‹°ì»¬ ì„¼ì…˜ìœ¼ë¡œ ë§Œë“­ë‹ˆë‹¤.
+ê·¸ë¦¬ê³  í¬ë¦¬í‹°ì¼ˆ ì„¹ì…˜ì€ í•œ ê°œì˜ ì“°ë ˆë“œë§Œì´ ì‹¤í–‰í•  ìˆ˜ ìžˆë„ë¡ ê°€ë“œí•©ë‹ˆë‹¤
+Javaì—ì„œëŠ” synchronizedë¥¼ ì‚¬ìš©í•˜ì—¬ í¬ë¦¬í‹°ì»¬ ì„¹ì…˜ì„ ë§Œë“¤ì–´ ë³µìˆ˜ì˜ ì“°ë ˆë“œì—ì„œ ê³µìœ í•˜ê³  ìžˆëŠ” í•„ë“œë¥¼ ê°€ë“œí•©ë‹ˆë‹¤.
 
-## Single Threaded Execution À» »ç¿ëÇÏÁö ¾Ê´Â ¿¹½Ã
+## Single Threaded Execution ì„ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” ì˜ˆì‹œ
 
 ```
-ÇÁ·Î±×·¥¿¡¼­´Â ÇÑ ¹ø¿¡ ÇÑ »ç¶÷ ¹Û¿¡ °Ç³Î ¼ö ¾ø´Â ¹®(gate)À» 3¸íÀÌ Åë°úÇÏ´Â ¸ð½ÀÀ» ½ÇÇèÇÑ´Ù.
-Áï »ç¶÷ÀÌ ¹®À» Åë°úÇÒ ¶§¸¶´Ù ±× ¼ö¸¦ ¼¼°í, ¶Ç Åë°úÇÏ´Â »ç¶÷ÀÇ [ÀÌ¸§°ú Ãâ½ÅÁö]¸¦ ±â·ÏÇÏ°Ô µÈ´Ù
+í”„ë¡œê·¸ëž¨ì—ì„œëŠ” í•œ ë²ˆì— í•œ ì‚¬ëžŒ ë°–ì— ê±´ë„ ìˆ˜ ì—†ëŠ” ë¬¸(gate)ì„ 3ëª…ì´ í†µê³¼í•˜ëŠ” ëª¨ìŠµì„ ì‹¤í—˜í•œë‹¤.
+ì¦‰ ì‚¬ëžŒì´ ë¬¸ì„ í†µê³¼í•  ë•Œë§ˆë‹¤ ê·¸ ìˆ˜ë¥¼ ì„¸ê³ , ë˜ í†µê³¼í•˜ëŠ” ì‚¬ëžŒì˜ [ì´ë¦„ê³¼ ì¶œì‹ ì§€]ë¥¼ ê¸°ë¡í•˜ê²Œ ëœë‹¤
 ```
 
 
 <table>
 	<tr>
-		<td>ÀÌ¸§</td>
-		<td>ÇØ¼³</td>
+		<td>ì´ë¦„</td>
+		<td>í•´ì„¤</td>
 	</tr>
 	<tr>
 		<td>Main</td>
-		<td>¹®À» ¸¸µé°í, 3¸íÀ» ¹®À¸·Î Åë°ú½ÃÅ°´Â Å¬·¡½º</td>
+		<td>ë¬¸ì„ ë§Œë“¤ê³ , 3ëª…ì„ ë¬¸ìœ¼ë¡œ í†µê³¼ì‹œí‚¤ëŠ” í´ëž˜ìŠ¤</td>
 	</tr>
 	<tr>
 		<td>Gate</td>
-		<td>¹®À» Ç¥ÇöÇÏ´Â Å¬·¡½º, »ç¶÷ÀÌ Áö³ª°¥ ¶§ ÀÌ¸§°ú Ãâ½ÅÁö¸¦ ±â·ÏÇÑ´Ù.</td>
+		<td>ë¬¸ì„ í‘œí˜„í•˜ëŠ” í´ëž˜ìŠ¤, ì‚¬ëžŒì´ ì§€ë‚˜ê°ˆ ë•Œ ì´ë¦„ê³¼ ì¶œì‹ ì§€ë¥¼ ê¸°ë¡í•œë‹¤.</td>
 	</tr>
 	<tr>
 		<td>User Thread</td>
-		<td>»ç¶÷À» ³ªÅ¸³»´Â Å¬·¡½º, ¹®À» Åë°úÇÑ´Ù.</td>
+		<td>ì‚¬ëžŒì„ ë‚˜íƒ€ë‚´ëŠ” í´ëž˜ìŠ¤, ë¬¸ì„ í†µê³¼í•œë‹¤.</td>
 	</tr>
 </table>
 
-Ch2AMain.java, Gate.java, UserThread.java ÄÚµå¸¦ ÀÌ¿ëÇØ¼­ ¸¸µë
+Ch2AMain.java, Gate.java, UserThread.java ì½”ë“œë¥¼ ì´ìš©í•´ì„œ ë§Œë“¬
 
 
-<h5>º¹¼ö ¾²·¹µå¸¦ ½ÇÇà½Ã ÀÌ¸§°ú Ãâ½ÅÀÚÀÇ Ã¹±ÛÀÚ°¡ °°À½¿¡µµ ºÒ±¸ÇÏ°í ºÒÀÏÄ¡¿¡ ´ëÇÑ ³»¿ëÀÌ ÄÜ¼Ö¿¡¼­ ¹ß»ýÇÑ´Ù</h5>
-=> º¹¼ö ¾²·¹µå ½ÇÇà½Ã µ¥ÀÌÅÍ ·¹ÀÌ½º¸¦ ÇÏ¸é¼­ µ¥ÀÌÅÍ °£¼·ÀÌ ¹ß»ýÇÑ´Ù 
+<h5>ë³µìˆ˜ ì“°ë ˆë“œë¥¼ ì‹¤í–‰ì‹œ ì´ë¦„ê³¼ ì¶œì‹ ìžì˜ ì²«ê¸€ìžê°€ ê°™ìŒì—ë„ ë¶ˆêµ¬í•˜ê³  ë¶ˆì¼ì¹˜ì— ëŒ€í•œ ë‚´ìš©ì´ ì½˜ì†”ì—ì„œ ë°œìƒí•œë‹¤</h5>
+=> ë³µìˆ˜ ì“°ë ˆë“œ ì‹¤í–‰ì‹œ ë°ì´í„° ë ˆì´ìŠ¤ë¥¼ í•˜ë©´ì„œ ë°ì´í„° ê°„ì„­ì´ ë°œìƒí•œë‹¤ 
 
-¹®Á¦°¡ µÇ´Â ºÎºÐÀº ´ÙÀ½°ú °°´Ù
+ë¬¸ì œê°€ ë˜ëŠ” ë¶€ë¶„ì€ ë‹¤ìŒê³¼ ê°™ë‹¤
 
 ```
 package me.dinosauruncle.chapter2.singlethreadedexcution;
@@ -60,12 +60,12 @@ public class Gate {
 		this.address = address;
 		check();
 	}
-	// µ¥ÀÌÅÍ °£¼·ÀÌ ¹ß»ýÇÏ´Â ¸Þ¼Òµå 1
+	// ë°ì´í„° ê°„ì„­ì´ ë°œìƒí•˜ëŠ” ë©”ì†Œë“œ 1
 	public String toString() {
 		return "No. " + counter + " : " +  name + ", " + address;
 	}
 
-	// µ¥ÀÌÅÍ °£¼·ÀÌ ¹ß»ýÇÏ´Â ¸Þ¼Òµå 2	
+	// ë°ì´í„° ê°„ì„­ì´ ë°œìƒí•˜ëŠ” ë©”ì†Œë“œ 2	
 	private void check() {
 		if (name.charAt(0) != address.charAt(0)) {
 			System.out.println("*****BROKEN*****" + toString());
@@ -76,11 +76,11 @@ public class Gate {
 
 ```
 
-## Single Threaded Execution À» »ç¿ëÇÏ´Â ¿¹½Ã
+## Single Threaded Execution ì„ ì‚¬ìš©í•˜ëŠ” ì˜ˆì‹œ
 
-toString°ú check ¸Þ¼Òµå¸¦ º¹¼öÀÇ ¾²·¹µå°¡ µ¿½Ã¿¡ »ç¿ëÇÒ °æ¿ì µ¥ÀÌÅÍ°¡ ²¿ÀÌ°Ô µÇ´Â Çö»óÀÌ ¹ß»ýÇÏ°ÔµÈ´Ù
+toStringê³¼ check ë©”ì†Œë“œë¥¼ ë³µìˆ˜ì˜ ì“°ë ˆë“œê°€ ë™ì‹œì— ì‚¬ìš©í•  ê²½ìš° ë°ì´í„°ê°€ ê¼¬ì´ê²Œ ë˜ëŠ” í˜„ìƒì´ ë°œìƒí•˜ê²Œëœë‹¤
 
-ÀÌ¸¦ ¹æÁöÇÏ±â À§ÇØ¼­(¹èÅ¸Á¦¾î¸¦ ÇÏ±â À§ÇØ¼­) µ¿±âÈ­Ã³¸®¸¦ ÇÏ´Â synchronized Ç¥½Ã¸¦ ¸Þ¼Òµå¿¡ ÇØ¾ßÇÑ´Ù
+ì´ë¥¼ ë°©ì§€í•˜ê¸° ìœ„í•´ì„œ(ë°°íƒ€ì œì–´ë¥¼ í•˜ê¸° ìœ„í•´ì„œ) ë™ê¸°í™”ì²˜ë¦¬ë¥¼ í•˜ëŠ” synchronized í‘œì‹œë¥¼ ë©”ì†Œë“œì— í•´ì•¼í•œë‹¤
 
 ```
 	public synchronized void pass(String name, String address) {
@@ -94,7 +94,7 @@ toString°ú check ¸Þ¼Òµå¸¦ º¹¼öÀÇ ¾²·¹µå°¡ µ¿½Ã¿¡ »ç¿ëÇÒ °æ¿ì µ¥ÀÌÅÍ°¡ ²¿ÀÌ°Ô µÇ´
 		return "No. " + counter + " : " +  name + ", " + address;
 	}
 
-	// µ¥ÀÌÅÍ °£¼·ÀÌ ¹ß»ýÇÏ´Â ¸Þ¼Òµå 2	
+	// ë°ì´í„° ê°„ì„­ì´ ë°œìƒí•˜ëŠ” ë©”ì†Œë“œ 2	
 	private synchronized void check() {
 		if (name.charAt(0) != address.charAt(0)) {
 			System.out.println("*****BROKEN*****" + toString());
@@ -102,61 +102,61 @@ toString°ú check ¸Þ¼Òµå¸¦ º¹¼öÀÇ ¾²·¹µå°¡ µ¿½Ã¿¡ »ç¿ëÇÒ °æ¿ì µ¥ÀÌÅÍ°¡ ²¿ÀÌ°Ô µÇ´
 	}
 ```
 
- ¸Þ¼Òµå¿¡ µ¿±âÈ­ Ã³¸®ÈÄ ½ÇÇàÇÏ¸é Ãßµ¹ÇÏ´Â ¸Þ¼¼Áö°¡ ÄÜ¼Ö¿¡¼­ »ç¶óÁ³À½À» ¹ß°ßÇÒ ¼ö ÀÖ´Ù.
+ ë©”ì†Œë“œì— ë™ê¸°í™” ì²˜ë¦¬í›„ ì‹¤í–‰í•˜ë©´ ì¶”ëŒí•˜ëŠ” ë©”ì„¸ì§€ê°€ ì½˜ì†”ì—ì„œ ì‚¬ë¼ì¡ŒìŒì„ ë°œê²¬í•  ìˆ˜ ìžˆë‹¤.
 
-## SharedResource(°øÀ¯ÀÚ¿ø)
-Single Threaded Execution ÆÐÅÏ¿¡´Â SharedResource ¿ªÇÒÀÌ Á¸ÀçÇÏ¸é ¿¹Á¦¿¡¼­ Gate.java°¡ ÀÌ¿¡ ÇØ´çÇÔ
-SharedResource¿¡´Â µÎ °¡Áö ºÐ·ùÀÇ ¸Þ¼Òµå°¡ Á¸ÀçÇÏ´Âµ¥
-1) safeMethod: º¹¼öÀÇ thread¿¡¼­ µ¿½Ã¿¡ È£ÃâÇØµµ ¾Æ¹«·± ¹®Á¦°¡ ¾ø´Â ¸Þ¼Òµå
-2) unsafeMethod: º¹¼öÀÇ ¾²·¹µå¿¡¼­ µ¿½Ã¿¡ È£ÃâÇÏ¸é ¾È µÇ±â ¶§¹®¿¡ °¡µå(Guard)°¡ ÇÊ¿äÇÑ ¸Þ¼Òµå
+## SharedResource(ê³µìœ ìžì›)
+Single Threaded Execution íŒ¨í„´ì—ëŠ” SharedResource ì—­í• ì´ ì¡´ìž¬í•˜ë©´ ì˜ˆì œì—ì„œ Gate.javaê°€ ì´ì— í•´ë‹¹í•¨
+SharedResourceì—ëŠ” ë‘ ê°€ì§€ ë¶„ë¥˜ì˜ ë©”ì†Œë“œê°€ ì¡´ìž¬í•˜ëŠ”ë°
+1) safeMethod: ë³µìˆ˜ì˜ threadì—ì„œ ë™ì‹œì— í˜¸ì¶œí•´ë„ ì•„ë¬´ëŸ° ë¬¸ì œê°€ ì—†ëŠ” ë©”ì†Œë“œ
+2) unsafeMethod: ë³µìˆ˜ì˜ ì“°ë ˆë“œì—ì„œ ë™ì‹œì— í˜¸ì¶œí•˜ë©´ ì•ˆ ë˜ê¸° ë•Œë¬¸ì— ê°€ë“œ(Guard)ê°€ í•„ìš”í•œ ë©”ì†Œë“œ
 
-Java¿¡¼­´Â unsafeMethod¸¦ synchronized¸¦ »ç¿ëÇÔÀ¸¼­ °¡µåÇÔ
+Javaì—ì„œëŠ” unsafeMethodë¥¼ synchronizedë¥¼ ì‚¬ìš©í•¨ìœ¼ì„œ ê°€ë“œí•¨
 
-## ¾î´À ¶§ »ç¿ëÇÏ´Â°¡(Àû¿ë °¡´É¼º)
-1) ¸ÖÆ¼¾²·¹µå
-2) º¹¼öÀÇ ¾²·¹µå°¡ ¾×¼¼½ºÇÒ ¶§
-3) »óÅÂ°¡ º¯È­ÇÒ °¡´É¼ºÀÌ ÀÖÀ» ¶§
-4) ¾ÈÀü¼ºÀÌ È®º¸ÇÒ ÇÊ¿ä°¡ ÀÖÀ» ¶§
+## ì–´ëŠ ë•Œ ì‚¬ìš©í•˜ëŠ”ê°€(ì ìš© ê°€ëŠ¥ì„±)
+1) ë©€í‹°ì“°ë ˆë“œ
+2) ë³µìˆ˜ì˜ ì“°ë ˆë“œê°€ ì•¡ì„¸ìŠ¤í•  ë•Œ
+3) ìƒíƒœê°€ ë³€í™”í•  ê°€ëŠ¥ì„±ì´ ìžˆì„ ë•Œ
+4) ì•ˆì „ì„±ì´ í™•ë³´í•  í•„ìš”ê°€ ìžˆì„ ë•Œ
 
-## »ó¼ÓÀÌ»ó
-¸ÖÆ¼ thread ÇÁ·Î±×·¡¹Ö¿¡¼­´Â »ó¼ÓÀÌ ¹ø°Å·Î¿î ¹®Á¦¸¦ ¸¸µé ¼ö ÀÖÀ½ ÀÌ¸¦ »ó¼Ó ÀÌ»ó(inhertitance anomaly)ÀÌ¶ó°í ÇÑ´Ù
-
-
-## Å©¸®Æ¼ÄÃ ¼½¼ÇÀÇ Å©±â¿Í ¼öÇà ´É·Â
-ÀÏ¹ÝÀûÀ¸·Î Single Threaded Execution ÆÐÅÏÀº ¼öÇà ´É·ÂÀ» ¶³¾î¶ß¸°´Ù.
-
-### 1. ¶ôÀ» ÃëµæÇÏ´Âµ¥ ½Ã°£ÀÌ °É¸®±â ¶§¹®¿¡
-
-### 2. ¾²·¹µåÀÇ Ãæµ¹·Î ´ë±âÇÏ±â ¶§¹®¿¡
+## ìƒì†ì´ìƒ
+ë©€í‹° thread í”„ë¡œê·¸ëž˜ë°ì—ì„œëŠ” ìƒì†ì´ ë²ˆê±°ë¡œìš´ ë¬¸ì œë¥¼ ë§Œë“¤ ìˆ˜ ìžˆìŒ ì´ë¥¼ ìƒì† ì´ìƒ(inhertitance anomaly)ì´ë¼ê³  í•œë‹¤
 
 
-## °è¼ö ¼¼¸¶Æ÷¾î¿Í Semaphore Å¬·¡½º
+## í¬ë¦¬í‹°ì»¬ ì„¹ì…˜ì˜ í¬ê¸°ì™€ ìˆ˜í–‰ ëŠ¥ë ¥
+ì¼ë°˜ì ìœ¼ë¡œ Single Threaded Execution íŒ¨í„´ì€ ìˆ˜í–‰ ëŠ¥ë ¥ì„ ë–¨ì–´ëœ¨ë¦°ë‹¤.
 
-Single Threaded ExecutionÀº ¾î¶°ÇÑ ¿µ¿ªÀ» [´Ü ÇÑ °³ÀÇ Thread]¸¸ ½ÇÇàÇÏ´Â ÆÐÅÏÀÌ¶ó¸é
-ÀÏ¹ÝÈ­ÇÏ¿© ¾î¶² ¿µ¿ªÀ» [ÃÖ´ë N°³ÀÇ ¾²·¹µå]±îÁö ½ÇÇà ÇÒ ¼ö ÀÖµµ·Ï ¼³Á¤ÇÏ°í ½ÍÀ» ¶§ »ç¿ëÇÏ´Â ±â¼úÀ»
-°è¼ö ¼¼¸¶Æ÷¾î¶ó°í ÇÑ´Ù. °è¼ö ¼¼¸¶Æ÷¾î´Â ¿ë·®À» Á¦¾îÇÑ´Ù.
+### 1. ë½ì„ ì·¨ë“í•˜ëŠ”ë° ì‹œê°„ì´ ê±¸ë¦¬ê¸° ë•Œë¬¸ì—
 
-java.util.concurrent ÆÐÅ°Áö¿¡¼­ °è¼ö ¼¼¸¶Æ÷¾î¸¦ ³ªÅ¸³»´Â Semaphore Å¬·¡½º¸¦ Á¦°øÇÑ´Ù.
+### 2. ì“°ë ˆë“œì˜ ì¶©ëŒë¡œ ëŒ€ê¸°í•˜ê¸° ë•Œë¬¸ì—
 
 
-## Semaphore Å¬·¡½º¸¦ »ç¿ëÇÑ ¿¹Á¦ ÇÁ·Î±×·¥
-10°³ÀÇ ¸ÖÆ¼¾²·¹µå·Î 3°³ÀÇ ÀÚ¿øÀ» µ¹¸®´Â ÇÁ·Î±×·¥
+## ê³„ìˆ˜ ì„¸ë§ˆí¬ì–´ì™€ Semaphore í´ëž˜ìŠ¤
 
-main ¿µ¿ª (Ch2Main.java)
+Single Threaded Executionì€ ì–´ë– í•œ ì˜ì—­ì„ [ë‹¨ í•œ ê°œì˜ Thread]ë§Œ ì‹¤í–‰í•˜ëŠ” íŒ¨í„´ì´ë¼ë©´
+ì¼ë°˜í™”í•˜ì—¬ ì–´ë–¤ ì˜ì—­ì„ [ìµœëŒ€ Nê°œì˜ ì“°ë ˆë“œ]ê¹Œì§€ ì‹¤í–‰ í•  ìˆ˜ ìžˆë„ë¡ ì„¤ì •í•˜ê³  ì‹¶ì„ ë•Œ ì‚¬ìš©í•˜ëŠ” ê¸°ìˆ ì„
+ê³„ìˆ˜ ì„¸ë§ˆí¬ì–´ë¼ê³  í•œë‹¤. ê³„ìˆ˜ ì„¸ë§ˆí¬ì–´ëŠ” ìš©ëŸ‰ì„ ì œì–´í•œë‹¤.
+
+java.util.concurrent íŒ¨í‚¤ì§€ì—ì„œ ê³„ìˆ˜ ì„¸ë§ˆí¬ì–´ë¥¼ ë‚˜íƒ€ë‚´ëŠ” Semaphore í´ëž˜ìŠ¤ë¥¼ ì œê³µí•œë‹¤.
+
+
+## Semaphore í´ëž˜ìŠ¤ë¥¼ ì‚¬ìš©í•œ ì˜ˆì œ í”„ë¡œê·¸ëž¨
+10ê°œì˜ ë©€í‹°ì“°ë ˆë“œë¡œ 3ê°œì˜ ìžì›ì„ ëŒë¦¬ëŠ” í”„ë¡œê·¸ëž¨
+
+main ì˜ì—­ (Ch2Main.java)
 
 ```
 public static void main(String[] args) {
-	// 3°³ÀÇ ¸®¼Ò½º¸¦ ÁØºñÇÑ´Ù
+	// 3ê°œì˜ ë¦¬ì†ŒìŠ¤ë¥¼ ì¤€ë¹„í•œë‹¤
 	BoundedResource resource = new BoundedResource(3);
 	
-	//  10°³ÀÇ ¾²·¹µå°¡ »ç¿ëÇÑ´Ù.
+	//  10ê°œì˜ ì“°ë ˆë“œê°€ ì‚¬ìš©í•œë‹¤.
 	for (int i =0; i < 10; i++) {
 		new Ch2UserThread(resource).start();
 	}	
 }
 ```
 
-ShareResource ¿µ¿ª(BoundedResource.java)
+ShareResource ì˜ì—­(BoundedResource.java)
 
 
 ```
@@ -164,24 +164,24 @@ ShareResource ¿µ¿ª(BoundedResource.java)
 	private final int permits;
 	private final static Random random = new Random(314159);
 	
-	//Å¬·¡½º »ý¼ºÀÚ(permits´Â ¸®¼Ò½ºÀÇ °³¼ö)
+	//í´ëž˜ìŠ¤ ìƒì„±ìž(permitsëŠ” ë¦¬ì†ŒìŠ¤ì˜ ê°œìˆ˜)
 	public BoundedResource(int permits) {
 		this.semaphore = new Semaphore(permits);
 		this.permits = permits;
 	
 	}
 	
-	// ¸®¼Ò½º¸¦ »ç¿ëÇÑ´Ù
+	// ë¦¬ì†ŒìŠ¤ë¥¼ ì‚¬ìš©í•œë‹¤
 	public void use() throws InterruptedException {
-		semaphore.acquire(); // »ç¿ëÇÒ ¼ö ÀÖ´Â ¸®¼Ò½º°¡ ÀÖ´ÂÁö Á¶»ç, ¸ðµç ¸®¼Ò½º°¡ »ç¿ë ÁÖÀÌ¸é ºí·ÏÇÔ
+		semaphore.acquire(); // ì‚¬ìš©í•  ìˆ˜ ìžˆëŠ” ë¦¬ì†ŒìŠ¤ê°€ ìžˆëŠ”ì§€ ì¡°ì‚¬, ëª¨ë“  ë¦¬ì†ŒìŠ¤ê°€ ì‚¬ìš© ì£¼ì´ë©´ ë¸”ë¡í•¨
 		try {
 			doUse();
 		} finally {
-			semaphore.release(); // »ç¿ëÇÑ ¸®¼Ò½º¸¦ ÇØÁ¦ÇÑ´Ù
+			semaphore.release(); // ì‚¬ìš©í•œ ë¦¬ì†ŒìŠ¤ë¥¼ í•´ì œí•œë‹¤
 		}
 	}
 	
-	// ¸®¼Ò½º¸¦ ½ÇÁ¦·Î »ç¿ëÇÑ´Ù.(¿©±â¿¡¼­´Â Thread.sleepÇÏ°í ÀÖÀ» »Ó)
+	// ë¦¬ì†ŒìŠ¤ë¥¼ ì‹¤ì œë¡œ ì‚¬ìš©í•œë‹¤.(ì—¬ê¸°ì—ì„œëŠ” Thread.sleepí•˜ê³  ìžˆì„ ë¿)
 	protected void doUse() throws InterruptedException{
 		Log.println("BEGIN: used = " + (permits - semaphore.availablePermits()));
 		Thread.sleep(random.nextInt(500));
@@ -189,7 +189,7 @@ ShareResource ¿µ¿ª(BoundedResource.java)
 	}
 ```
 
-Thread ¿µ¿ª (Ch2UserThread.java)
+Thread ì˜ì—­ (Ch2UserThread.java)
 
 ```
 	private final static Random random = new Random();
@@ -212,7 +212,7 @@ Thread ¿µ¿ª (Ch2UserThread.java)
 	}
 ```
 
-Log ¿µ¿ª, º°·ÎÁß¿äÇÏÁö ¾ÊÀ½ (Log.java)
+Log ì˜ì—­, ë³„ë¡œì¤‘ìš”í•˜ì§€ ì•ŠìŒ (Log.java)
 
 
 ```
@@ -222,29 +222,29 @@ Log ¿µ¿ª, º°·ÎÁß¿äÇÏÁö ¾ÊÀ½ (Log.java)
 ```
 
 
-## µ¥µå¶ô È¸ÇÇ ¹®Á¦
+## ë°ë“œë½ íšŒí”¼ ë¬¸ì œ
 
 <table>
 	<tr>
-		<td>ÀÌ¸§</td>
-		<td>ÇØ¼³</td>
+		<td>ì´ë¦„</td>
+		<td>í•´ì„¤</td>
 	</tr>
 	<tr>
 		<td>Ch2CMain</td>
-		<td>½ºÇ¬°ú Æ÷Å©¸¦ ÁØºñÇÏ°í Alice¿Í Bobby¸¦ ¿òÁ÷ÀÌ´Â Å¬·¡½º</td>
+		<td>ìŠ¤í‘¼ê³¼ í¬í¬ë¥¼ ì¤€ë¹„í•˜ê³  Aliceì™€ Bobbyë¥¼ ì›€ì§ì´ëŠ” í´ëž˜ìŠ¤</td>
 	</tr>
 	<tr>
 		<td>Tool</td>
-		<td>½Ä±â(½ºÇ¬ ¶Ç´Â Æ÷Å©)¸¦ ³ªÅ¸³»´Â Å¬·¡½º</td>
+		<td>ì‹ê¸°(ìŠ¤í‘¼ ë˜ëŠ” í¬í¬)ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ëž˜ìŠ¤</td>
 	</tr>
 	<tr>
 		<td>EaterThread</td>
-		<td>¿Þ¼Õ¿¡ ½Ä±â¸¦ Áý°í ¿À¸¥¼Õ¿¡ ½Ä±â¸¦ Àâ°í ½Ä»çÇÏ´Â Å¬·¡½º</td>
+		<td>ì™¼ì†ì— ì‹ê¸°ë¥¼ ì§‘ê³  ì˜¤ë¥¸ì†ì— ì‹ê¸°ë¥¼ ìž¡ê³  ì‹ì‚¬í•˜ëŠ” í´ëž˜ìŠ¤</td>
 	</tr>
 </table>
 
-Ch2CMain.java, Tool.java, EaterThread.java ¸¦ ½ÇÇà½ÃÅ°¸é Thread µ¿ÀÛÇÏ´Ù°¡ µ¥µå¶ô¿¡ °É¸°´Ù
-µ¥µå¶ô¿¡ °É¸®Áö ¾Êµµ·Ï ÄÚµå¸¦ ¼öÁ¤ÇÏ´Â ¹®Á¦ 
+Ch2CMain.java, Tool.java, EaterThread.java ë¥¼ ì‹¤í–‰ì‹œí‚¤ë©´ Thread ë™ìž‘í•˜ë‹¤ê°€ ë°ë“œë½ì— ê±¸ë¦°ë‹¤
+ë°ë“œë½ì— ê±¸ë¦¬ì§€ ì•Šë„ë¡ ì½”ë“œë¥¼ ìˆ˜ì •í•˜ëŠ” ë¬¸ì œ 
 
 Ch2CMain.java
 
@@ -305,16 +305,16 @@ EaterThread.java
 
 ```
 
-### Ç®ÀÌ
-ÇöÀç ÀÌ µ¥µå¶ôÀÌ ¹ß»ýÇÏ´Â ¿øÀÎÀº ÀÌÁßÀ¸·Î ¹èÅ¸Á¦¾î¸¦ ÇÏ´Â °Í°ú ÀÌÁß ¹èÅ¸Á¦¾î¿¡¼­ ´Ù·ç´Â ÀÚ¿øÀÌ ¼­·Î °£¼·ÀÌ ÀÏ¾î³ª¼­ ¹ß»ýÇÏ´Â ¹®Á¦ÀÌ´Ù
-±×·¯¹Ç·Î µÎ ÀÚ¿ø¿¡ ´ëÇÑ °¢°¢ÀÇ ¹èÅ¸Á¦¾î¸¦ °ÉÁö ¸»°í ÇÏ³ªÀÇ ¹èÅ¸Á¦¾î¸¦ ÅëÇØ¼­ µÎ ÀÚ¿øÀ» µ¿½Ã¿¡ ¶ôÀ» °É ¼ö ÀÖµµ·Ï ÄÚµå¸¦ ¼öÁ¤ÇØ¾ß ÇÑ´Ù
-¸Þ¼Òµå¿¡¸¸ synchronized¸¦ ¼³Á¤ÇÑ´Ù.
+### í’€ì´
+í˜„ìž¬ ì´ ë°ë“œë½ì´ ë°œìƒí•˜ëŠ” ì›ì¸ì€ ì´ì¤‘ìœ¼ë¡œ ë°°íƒ€ì œì–´ë¥¼ í•˜ëŠ” ê²ƒê³¼ ì´ì¤‘ ë°°íƒ€ì œì–´ì—ì„œ ë‹¤ë£¨ëŠ” ìžì›ì´ ì„œë¡œ ê°„ì„­ì´ ì¼ì–´ë‚˜ì„œ ë°œìƒí•˜ëŠ” ë¬¸ì œì´ë‹¤
+ê·¸ëŸ¬ë¯€ë¡œ ë‘ ìžì›ì— ëŒ€í•œ ê°ê°ì˜ ë°°íƒ€ì œì–´ë¥¼ ê±¸ì§€ ë§ê³  í•˜ë‚˜ì˜ ë°°íƒ€ì œì–´ë¥¼ í†µí•´ì„œ ë‘ ìžì›ì„ ë™ì‹œì— ë½ì„ ê±¸ ìˆ˜ ìžˆë„ë¡ ì½”ë“œë¥¼ ìˆ˜ì •í•´ì•¼ í•œë‹¤
+ë©”ì†Œë“œì—ë§Œ synchronizedë¥¼ ì„¤ì •í•œë‹¤.
 
 EaterThread.java
 
 ```
 
-	... ´Ù¸¥ ÄÚµåµéÀº µ¿ÀÏ 
+	... ë‹¤ë¥¸ ì½”ë“œë“¤ì€ ë™ì¼ 
 
 	public synchronized void eat() {
 		

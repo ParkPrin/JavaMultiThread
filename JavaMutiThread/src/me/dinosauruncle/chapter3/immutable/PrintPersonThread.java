@@ -2,16 +2,16 @@ package me.dinosauruncle.chapter3.immutable;
 
 public class PrintPersonThread extends Thread {
 	private Person person;
-	// °´Ã¼ ÀÚÃ¼°¡ final·Î Á¤ÀÇµÈ ºÒÆí °´Ã¼ÀÌ±â ¶§¹®¿¡ synchronized¸¦ ÇÏÁö ¾Ê¾Æµµ µ¥ÀÌÅÍ °£¼·ÀÌ ¹ß»ıÇÏÁö ¾Ê´Â´Ù
-	// synchronized°¡ ºÒÇÊ¿äÇÔ
+	// ê°ì²´ ìì²´ê°€ finalë¡œ ì •ì˜ëœ ë¶ˆí¸ ê°ì²´ì´ê¸° ë•Œë¬¸ì— synchronizedë¥¼ í•˜ì§€ ì•Šì•„ë„ ë°ì´í„° ê°„ì„­ì´ ë°œìƒí•˜ì§€ ì•ŠëŠ”ë‹¤
+	// synchronizedê°€ ë¶ˆí•„ìš”í•¨
 	public PrintPersonThread(Person person) {
 		this.person = person;
 	}
 	
 	public void run() {
 		while (true) {
-			// Thread.currentThread().getNameÀº ÀÚ±â threadÀÇ ÀÌ¸§À» ±¸ÇÒ ¶§ »ç¿ëÇÑ´Ù
-			// Thread.currentThread()´Â ÇöÀçÀÇ thread ±¸ÇÏ´Â ¸Ş¼ÒµåÀÌ´Ù.
+			// Thread.currentThread().getNameì€ ìê¸° threadì˜ ì´ë¦„ì„ êµ¬í•  ë•Œ ì‚¬ìš©í•œë‹¤
+			// Thread.currentThread()ëŠ” í˜„ì¬ì˜ thread êµ¬í•˜ëŠ” ë©”ì†Œë“œì´ë‹¤.
 			System.out.println(Thread.currentThread().getName() + "prints" + person);
 		}
 	}

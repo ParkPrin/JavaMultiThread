@@ -14,8 +14,8 @@ public class SaverThread extends Thread {
 	
 		try {
 			while (true) {
-				data.save();			// µ¥ÀÌÅÍ¸¦ ÀúÀåÇÏ·Á ÇÑ´Ù
-				Thread.sleep(1000);		// ¾à 1ÃÊ ÈŞ½Ä
+				data.save();			// ë°ì´í„°ë¥¼ ì €ì¥í•˜ë ¤ í•œë‹¤
+				Thread.sleep(1000);		// ì•½ 1ì´ˆ íœ´ì‹
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

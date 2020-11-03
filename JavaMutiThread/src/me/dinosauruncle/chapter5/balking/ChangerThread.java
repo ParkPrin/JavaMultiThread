@@ -15,9 +15,9 @@ public class ChangerThread extends Thread {
 	public void run() {
 		try {
 			for (int i = 0; true; i++) {
-				data.change("No. " + i);				// µ¥ÀÌÅÍ¸¦ º¯°æÇÑ´Ù
-				Thread.sleep(random.nextInt(1000));		// ÀÛ¾÷
-				data.save();							// ¸í½ÃÀûÀ¸·Î ÀúÀåÇÑ´Ù.
+				data.change("No. " + i);				// ë°ì´í„°ë¥¼ ë³€ê²½í•œë‹¤
+				Thread.sleep(random.nextInt(1000));		// ì‘ì—…
+				data.save();							// ëª…ì‹œì ìœ¼ë¡œ ì €ì¥í•œë‹¤.
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

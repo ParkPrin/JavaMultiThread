@@ -3,10 +3,10 @@ package me.dinosauruncle.chapter2.singlethreadedexcution;
 public class Ch2BMain {
 	
 	public static void main(String[] args) {
-		// 3°³ÀÇ ¸®¼Ò½º¸¦ ÁØºñÇÑ´Ù
+		// 3ê°œì˜ ë¦¬ì†ŒìŠ¤ë¥¼ ì¤€ë¹„í•œë‹¤
 		BoundedResource resource = new BoundedResource(3);
 		
-		//  10°³ÀÇ ¾²·¹µå°¡ »ç¿ëÇÑ´Ù.
+		//  10ê°œì˜ ì“°ë ˆë“œê°€ ì‚¬ìš©í•œë‹¤.
 		for (int i =0; i < 10; i++) {
 			new Ch2UserThread(resource).start();
 		}	

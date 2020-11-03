@@ -1,31 +1,31 @@
 # Balking Pattern
 
-## Balking PatternÀÌ¶õ?
-Æ¯Á¤ Ã³¸®¸¦ ½ÇÇàÇÏ¸é °ï¶õÇÏ´Ù°Å³ª È¤Àº ´çÀå ½ÇÇàÇÒ ÇÊ¿ä°¡ ¾ø´Â °æ¿ì
-Ã³¸® Á÷Àü¿¡ ½ÇÇàÀ» Áß´ÜÇÏ°í µ¹¾Æ °¡´Â ÆĞÅÏ
+## Balking Patternì´ë€?
+íŠ¹ì • ì²˜ë¦¬ë¥¼ ì‹¤í–‰í•˜ë©´ ê³¤ë€í•˜ë‹¤ê±°ë‚˜ í˜¹ì€ ë‹¹ì¥ ì‹¤í–‰í•  í•„ìš”ê°€ ì—†ëŠ” ê²½ìš°
+ì²˜ë¦¬ ì§ì „ì— ì‹¤í–‰ì„ ì¤‘ë‹¨í•˜ê³  ëŒì•„ ê°€ëŠ” íŒ¨í„´
 
-## ¿¹Á¦
+## ì˜ˆì œ
 
 <table>
 	<tr>
-		<td>ÀÌ¸§</td>
-		<td>ÇØ¼³</td>
+		<td>ì´ë¦„</td>
+		<td>í•´ì„¤</td>
 	</tr>
 	<tr>
 		<td>Data</td>
-		<td>º¯°æ¡¤ÀúÀåÀÌ °¡´ÉÇÑ µ¥ÀÌÅÍ¸¦ ³ªÅ¸³»´Â Å¬·¡½º</td>
+		<td>ë³€ê²½Â·ì €ì¥ì´ ê°€ëŠ¥í•œ ë°ì´í„°ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤</td>
 	</tr>
 	<tr>
 		<td>SaverThread</td>
-		<td>µ¥ÀÌÅÍÀÇ ³»¿ëÀ» Á¤±âÀûÀ¸·Î ÀúÀåÇÏ´Â Å¬·¡½º</td>
+		<td>ë°ì´í„°ì˜ ë‚´ìš©ì„ ì •ê¸°ì ìœ¼ë¡œ ì €ì¥í•˜ëŠ” í´ë˜ìŠ¤</td>
 	</tr>
 	<tr>
 		<td>ChangerThread</td>
-		<td>µ¥ÀÌÅÍÀÇ ³»¿ëÀ» º¯°æ¡¤ÀúÀåÇÏ´Â Å¬·¡½º</td>
+		<td>ë°ì´í„°ì˜ ë‚´ìš©ì„ ë³€ê²½Â·ì €ì¥í•˜ëŠ” í´ë˜ìŠ¤</td>
 	</tr>
 	<tr>
 		<td>Ch5AMain</td>
-		<td>µ¿ÀÛ Å×½ºÆ®¿ë Å¬·¡½º</td>
+		<td>ë™ì‘ í…ŒìŠ¤íŠ¸ìš© í´ë˜ìŠ¤</td>
 	</tr>
 </table>
 
@@ -41,7 +41,7 @@ import java.io.IOException;
 import java.io.Writer;
 
 public class Data {
-	private final String filename;	// ÀúÀåÇÏ´Â ÆÄÀÏ¸í
+	private final String filename;	// ì €ì¥í•˜ëŠ” íŒŒì¼ëª…
 	private String content;
 	private boolean changed;
 	
@@ -51,14 +51,14 @@ public class Data {
 		this.changed = true;
 	}
 	
-	// µ¥ÀÌÅÍÀÇ ³»¿ëÀ» ¼öÁ¤ÇÑ´Ù
+	// ë°ì´í„°ì˜ ë‚´ìš©ì„ ìˆ˜ì •í•œë‹¤
 	public synchronized void change(String newContent) {
 		content = newContent;
 		changed = true;
 	}
 	
 	
-	// µ¥ÀÌÅÍÀÇ ³»¿ëÀÌ º¯°æµÇ¾úÀ¸¸é ÆÄÀÏ¿¡ ÀúÀåÇÑ´Ù
+	// ë°ì´í„°ì˜ ë‚´ìš©ì´ ë³€ê²½ë˜ì—ˆìœ¼ë©´ íŒŒì¼ì— ì €ì¥í•œë‹¤
 	public synchronized void save() throws IOException {
 		if (!changed) {
 			return;
@@ -68,7 +68,7 @@ public class Data {
 		
 	}
 	
-	// µ¥ÀÌÅÍÀÇ ³»¿ëÀ» ½ÇÁ¦·Î ÆÄÀÏ¿¡ ÀúÀåÇÑ´Ù
+	// ë°ì´í„°ì˜ ë‚´ìš©ì„ ì‹¤ì œë¡œ íŒŒì¼ì— ì €ì¥í•œë‹¤
 	private void doSave() throws IOException {
 		System.out.println(Thread.currentThread().getName() 
 				+ " calls doSave, content = " + content);
@@ -99,8 +99,8 @@ public class SaverThread extends Thread {
 	
 		try {
 			while (true) {
-				data.save();			// µ¥ÀÌÅÍ¸¦ ÀúÀåÇÏ·Á ÇÑ´Ù
-				Thread.sleep(1000);		// ¾à 1ÃÊ ÈŞ½Ä
+				data.save();			// ë°ì´í„°ë¥¼ ì €ì¥í•˜ë ¤ í•œë‹¤
+				Thread.sleep(1000);		// ì•½ 1ì´ˆ íœ´ì‹
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -133,9 +133,9 @@ public class ChangerThread extends Thread {
 	public void run() {
 		try {
 			for (int i = 0; true; i++) {
-				data.change("No. " + i);				// µ¥ÀÌÅÍ¸¦ º¯°æÇÑ´Ù
-				Thread.sleep(random.nextInt(1000));		// ÀÛ¾÷
-				data.save();							// ¸í½ÃÀûÀ¸·Î ÀúÀåÇÑ´Ù.
+				data.change("No. " + i);				// ë°ì´í„°ë¥¼ ë³€ê²½í•œë‹¤
+				Thread.sleep(random.nextInt(1000));		// ì‘ì—…
+				data.save();							// ëª…ì‹œì ìœ¼ë¡œ ì €ì¥í•œë‹¤.
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -166,32 +166,32 @@ public class Ch5AMain {
 
 ```
 
-Balking PatternÀÇ ÇÙ½ÉÀº ½ÇÇà ÇÊ¿äÀ¯¹«¸¦ °áÁ¤ÇÏ´Â Á¶°Ç¿¡ ÀÖÀ¸¸ç
-ÀÌ Á¶°ÇÀ» °áÁ¤ÇÏ´Â º¯¼ö³ª ÇÊµå¸¦ ÇÃ·¡±×(flag: ±ê¹ß)¶ó°í ÁöÂ¡ÇÑ´Ù.
+Balking Patternì˜ í•µì‹¬ì€ ì‹¤í–‰ í•„ìš”ìœ ë¬´ë¥¼ ê²°ì •í•˜ëŠ” ì¡°ê±´ì— ìˆìœ¼ë©°
+ì´ ì¡°ê±´ì„ ê²°ì •í•˜ëŠ” ë³€ìˆ˜ë‚˜ í•„ë“œë¥¼ í”Œë˜ê·¸(flag: ê¹ƒë°œ)ë¼ê³  ì§€ì§•í•œë‹¤.
 
-º» ¿¹Á¦ÀÇ ÇÃ·¡±×´Â Data Å¬·¡½ºÀÇ changed ÇÊµåÀÌ´Ù.
+ë³¸ ì˜ˆì œì˜ í”Œë˜ê·¸ëŠ” Data í´ë˜ìŠ¤ì˜ changed í•„ë“œì´ë‹¤.
 
-Data Å¬·¡½º ¾È¿¡´Â ³»¿ëÀ» ¼öÁ¤ÇÏ°Å³ª, ÀúÀå, ÆÄÀÏÀúÀåÇÏ´Â ±â´ÉÀÌ ¸ğ¿©ÀÖÀ¸¸ç
-Data Å¬·¡½º´Â °øÀ¯ÀÚ¿ø¿¡ ÇØ´çÇÑ´Ù.
-ÀÌ °øÀ¯ÀÚ¿ø »ç¿ëÇÏ´Â SaverThread¿Í ChangerThread´Â Á¤±âÀûÀÎ µ¿ÀÛÀ» ÇÏ¸é¼­
-³»¿ëÀ» ÀúÀåÇÏ°Å³ª º¯°æÀÛ¾÷À» ÁøÇàÇÑ´Ù. °¢ ÀÛ¾÷À» ÁøÇàÇÒ ¶§¸¶´Ù ÄÜ¼Ö¿¡ ±â·ÏÀÌ ³²´Â´Ù.
-º» ÇÁ·Î±×·¥ÀÇ ÇÙ½ÉÀº ¼öÁ¤µÈ ³»¿ëÀÌ ÀÖ´Â »óÅÂ¿¡¼­ ÀúÀåÀ» ÇÏ¸é ÀúÀåÀÌ ÁøÇàµÇÁö¸¸
-¼ö¾ûµÈ ³»¿ëÀÌ ¾øÀ»½Ã ÀúÀå ¸Ş¼Òµå´Â ½ÇÇàµÇÁö ¾Ê´Â´Ù.
-ÀÌ¸¦ ÆÇ´ÜÇÏ´Â °ÍÀÌ ÇÃ·¡±×¿¡ ÇØ´çÇÏ´Â changed ÇÊµåÀÌ´Ù.
+Data í´ë˜ìŠ¤ ì•ˆì—ëŠ” ë‚´ìš©ì„ ìˆ˜ì •í•˜ê±°ë‚˜, ì €ì¥, íŒŒì¼ì €ì¥í•˜ëŠ” ê¸°ëŠ¥ì´ ëª¨ì—¬ìˆìœ¼ë©°
+Data í´ë˜ìŠ¤ëŠ” ê³µìœ ìì›ì— í•´ë‹¹í•œë‹¤.
+ì´ ê³µìœ ìì› ì‚¬ìš©í•˜ëŠ” SaverThreadì™€ ChangerThreadëŠ” ì •ê¸°ì ì¸ ë™ì‘ì„ í•˜ë©´ì„œ
+ë‚´ìš©ì„ ì €ì¥í•˜ê±°ë‚˜ ë³€ê²½ì‘ì—…ì„ ì§„í–‰í•œë‹¤. ê° ì‘ì—…ì„ ì§„í–‰í•  ë•Œë§ˆë‹¤ ì½˜ì†”ì— ê¸°ë¡ì´ ë‚¨ëŠ”ë‹¤.
+ë³¸ í”„ë¡œê·¸ë¨ì˜ í•µì‹¬ì€ ìˆ˜ì •ëœ ë‚´ìš©ì´ ìˆëŠ” ìƒíƒœì—ì„œ ì €ì¥ì„ í•˜ë©´ ì €ì¥ì´ ì§„í–‰ë˜ì§€ë§Œ
+ìˆ˜ì—‰ëœ ë‚´ìš©ì´ ì—†ì„ì‹œ ì €ì¥ ë©”ì†Œë“œëŠ” ì‹¤í–‰ë˜ì§€ ì•ŠëŠ”ë‹¤.
+ì´ë¥¼ íŒë‹¨í•˜ëŠ” ê²ƒì´ í”Œë˜ê·¸ì— í•´ë‹¹í•˜ëŠ” changed í•„ë“œì´ë‹¤.
 
-## ¾î¶² °æ¿ì¿¡ »ç¿ëÇÏ´Â°¡ (Àû¿ë °¡´É¼º)
-1) ÁøÇàÁß »ç¿ëÇÏÁö ¾Ê´Â °æ¿ì°¡ ¹ß»ıÇÒ ¶§
-2) °¡µå Á¶°ÇÀÌ ÃæÁ·µÇ±â¸¦ ±â´Ù¸®°í ½ÍÁö ¾ÊÀ» ¶§(guarded suspensionÀÇ ¹İ´ë°³³ä)
-3) °¡µå Á¶°ÇÀ» ¸¸Á·ÇÏ´Â °ÍÀÌ Ã³À½ 1È¸ÀÎ °æ¿ì
+## ì–´ë–¤ ê²½ìš°ì— ì‚¬ìš©í•˜ëŠ”ê°€ (ì ìš© ê°€ëŠ¥ì„±)
+1) ì§„í–‰ì¤‘ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” ê²½ìš°ê°€ ë°œìƒí•  ë•Œ
+2) ê°€ë“œ ì¡°ê±´ì´ ì¶©ì¡±ë˜ê¸°ë¥¼ ê¸°ë‹¤ë¦¬ê³  ì‹¶ì§€ ì•Šì„ ë•Œ(guarded suspensionì˜ ë°˜ëŒ€ê°œë…)
+3) ê°€ë“œ ì¡°ê±´ì„ ë§Œì¡±í•˜ëŠ” ê²ƒì´ ì²˜ìŒ 1íšŒì¸ ê²½ìš°
 
-## Balking Pattern°ú Guarded Suspension PatternÀÇ Áß°£
-Balking Pattern¿¡¼­´Â °¡µå Á¶°ÇÀ» ¸¸Á·ÇÏÁö ¾ÊÀ» °æ¿ì balkÇÏ°í µ¹¾Æ°£´Ù.
-±×·¯³ª Guarded Suspension Pattern¿¡¼­´Â °¡µå Á¶°ÇÀÌ ¸¸Á·µÉ ¶§±îÁö ±â´Ù¸°´Ù.
-¼­·Î ¹İ´ëµÇ´Â °³³äÀÎµ¥, ÀÌ ÁÖ°£´Ü°èÀÇ °³³äÀº
-"°¡µå Á¶°ÇÀ» ¸¸Á·ÇÒ ¶§±îÁö ÀÏÁ¤ ½Ã°£ ±â´Ù¸°´Ù"
-ÀÌ¸ç ÀÌ¸¦ Guarded Timed·Î ¸í¸íÇÑ´Ù.
+## Balking Patternê³¼ Guarded Suspension Patternì˜ ì¤‘ê°„
+Balking Patternì—ì„œëŠ” ê°€ë“œ ì¡°ê±´ì„ ë§Œì¡±í•˜ì§€ ì•Šì„ ê²½ìš° balkí•˜ê³  ëŒì•„ê°„ë‹¤.
+ê·¸ëŸ¬ë‚˜ Guarded Suspension Patternì—ì„œëŠ” ê°€ë“œ ì¡°ê±´ì´ ë§Œì¡±ë  ë•Œê¹Œì§€ ê¸°ë‹¤ë¦°ë‹¤.
+ì„œë¡œ ë°˜ëŒ€ë˜ëŠ” ê°œë…ì¸ë°, ì´ ì£¼ê°„ë‹¨ê³„ì˜ ê°œë…ì€
+"ê°€ë“œ ì¡°ê±´ì„ ë§Œì¡±í•  ë•Œê¹Œì§€ ì¼ì • ì‹œê°„ ê¸°ë‹¤ë¦°ë‹¤"
+ì´ë©° ì´ë¥¼ Guarded Timedë¡œ ëª…ëª…í•œë‹¤.
 
-## Guarded Timed ¿¹Á¦
+## Guarded Timed ì˜ˆì œ
 
 Host.class
 
@@ -201,27 +201,27 @@ package me.dinosauruncle.chapter5.balking;
 import java.util.concurrent.TimeoutException;
 
 public class Host {
-	private final long timeout; // Å¸ÀÓ ¾Æ¿ôÀÇ °ª
-	private boolean ready = false; // ¸Ş¼Òµå¸¦ ½ÇÇàÇØµµ µÇ¸é true
+	private final long timeout; // íƒ€ì„ ì•„ì›ƒì˜ ê°’
+	private boolean ready = false; // ë©”ì†Œë“œë¥¼ ì‹¤í–‰í•´ë„ ë˜ë©´ true
 	
 	public Host(long timeout) {
 		this.timeout = timeout;
 	}
 	
-	// »óÅÂ¸¦ º¯°æÇÑ´Ù
+	// ìƒíƒœë¥¼ ë³€ê²½í•œë‹¤
 	
 	public synchronized void setExecutable(boolean on) {
 		ready = on;
 		notifyAll();
 	}
 	
-	// »óÅÂ¸¦ °í·ÁÇÏ¿© ½ÇÇàÇÑ´Ù
+	// ìƒíƒœë¥¼ ê³ ë ¤í•˜ì—¬ ì‹¤í–‰í•œë‹¤
 	public synchronized void execute() 
 			throws InterruptedException,TimeoutException{
-		long start = System.currentTimeMillis(); // °³½Ã ½Ã°¢
+		long start = System.currentTimeMillis(); // ê°œì‹œ ì‹œê°
 		while (!ready) {
-			long now = System.currentTimeMillis(); // ÇöÀç ½Ã°¢
-			long rest = timeout - (now - start);  //³ª¸ÓÁö ´ë±â ½Ã°£
+			long now = System.currentTimeMillis(); // í˜„ì¬ ì‹œê°
+			long rest = timeout - (now - start);  //ë‚˜ë¨¸ì§€ ëŒ€ê¸° ì‹œê°„
 			
 			if (rest <= 0) {
 				throw new TimeoutException("now - start = "
@@ -233,7 +233,7 @@ public class Host {
 		
 	}
 	
-	// ½ÇÁ¦ Ã³¸®
+	// ì‹¤ì œ ì²˜ë¦¬
 	private void doExecute() {
 		System.out.println(Thread.currentThread().getName() + " calls doExecute");
 	}
@@ -266,10 +266,10 @@ public class Ch5BMain {
 
 ```
 
-Å¸ÀÓ¾Æ¿ô½Ã°£À» Á¤ÇØ³õ°í wait½Ã°£ÀÌ Å¸ÀÓ¾Æ¿ô ½Ã°£À» ÃÊ°úÇÏ¸é TimeoutException ¹ß»ı½ÃÅ²´Ù
+íƒ€ì„ì•„ì›ƒì‹œê°„ì„ ì •í•´ë†“ê³  waitì‹œê°„ì´ íƒ€ì„ì•„ì›ƒ ì‹œê°„ì„ ì´ˆê³¼í•˜ë©´ TimeoutException ë°œìƒì‹œí‚¨ë‹¤
 
-## Á¤¸®
-°´Ã¼°¡ »óÅÂ¸¦ °¡Áö°í ÀÖ°í ÀÚ½ÅÀÇ »óÅÂ°¡ ÀûÀıÇÒ ¶§¿¡¸¸ Ã³¸®¸¦ ½ÇÇàÇÏ°í
-ÀûÀıÇÏÁö ¾ÊÀ» ¶§ ½ÇÇàÇÏÁö ¾Ê´Â °ÍÀÌ balking patternÀÌ´Ù.
-if¹®À» ÅëÇØ¼­ »óÅÂ¸¦ Á¡°ËÇÏ¸ç, ½ÇÇà»óÅÂ Á¶°Ç¿¡ ¸ÂÁö ¾Ê´Â °æ¿ì 
-returnÀÌ³ª ÇØ´çÇÏ´Â exception Ã³¸®¸¦ ÇÑ´Ù.
+## ì •ë¦¬
+ê°ì²´ê°€ ìƒíƒœë¥¼ ê°€ì§€ê³  ìˆê³  ìì‹ ì˜ ìƒíƒœê°€ ì ì ˆí•  ë•Œì—ë§Œ ì²˜ë¦¬ë¥¼ ì‹¤í–‰í•˜ê³ 
+ì ì ˆí•˜ì§€ ì•Šì„ ë•Œ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ” ê²ƒì´ balking patternì´ë‹¤.
+ifë¬¸ì„ í†µí•´ì„œ ìƒíƒœë¥¼ ì ê²€í•˜ë©°, ì‹¤í–‰ìƒíƒœ ì¡°ê±´ì— ë§ì§€ ì•ŠëŠ” ê²½ìš° 
+returnì´ë‚˜ í•´ë‹¹í•˜ëŠ” exception ì²˜ë¦¬ë¥¼ í•œë‹¤.

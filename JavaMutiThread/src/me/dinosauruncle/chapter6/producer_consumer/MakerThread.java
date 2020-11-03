@@ -5,7 +5,7 @@ import java.util.Random;
 public class MakerThread extends Thread {
 	private final Random random;
 	private final Table table;
-	private static int id =0;	// ÄÉÀÌÅ© ¾È³» ¹øÈ£(¿ä¸®»ç Àü¿ø °øÅë)
+	private static int id =0;	// ì¼€ì´í¬ ì•ˆë‚´ ë²ˆí˜¸(ìš”ë¦¬ì‚¬ ì „ì› ê³µí†µ)
 	public MakerThread(String name, Table table, long seed) {
 		super(name);
 		this.table = table;
@@ -18,6 +18,7 @@ public class MakerThread extends Thread {
 			while (true) {
 				Thread.sleep(random.nextInt(10000));
 				String cake = "[ Cake No. " + nextId() + " by " + getName() + "]";
+				table.put(cake);
 			}
 		} catch (InterruptedException e) {
 

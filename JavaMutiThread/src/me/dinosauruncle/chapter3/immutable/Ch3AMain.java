@@ -1,9 +1,10 @@
+  
 package me.dinosauruncle.chapter3.immutable;
 
 public class Ch3AMain {
 
 	public static void main(String[] args) {
-		// ºÒº¯ÀÇ °´Ã¼¸¦ °øÀ¯ÀÚ¿øÀ¸·Î »ç¿ëÇÔ
+		// ë¶ˆë³€ì˜ ê°ì²´ë¥¼ ê³µìœ ìì›ìœ¼ë¡œ ì‚¬ìš©í•¨
 		Person alice = new Person("Alice", "Alaska");
 		
 		new PrintPersonThread(alice).start();

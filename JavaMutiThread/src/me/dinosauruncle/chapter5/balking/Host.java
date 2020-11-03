@@ -3,27 +3,27 @@ package me.dinosauruncle.chapter5.balking;
 import java.util.concurrent.TimeoutException;
 
 public class Host {
-	private final long timeout; // Å¸ÀÓ ¾Æ¿ôÀÇ °ª
-	private boolean ready = false; // ¸Ş¼Òµå¸¦ ½ÇÇàÇØµµ µÇ¸é true
+	private final long timeout; // íƒ€ì„ ì•„ì›ƒì˜ ê°’
+	private boolean ready = false; // ë©”ì†Œë“œë¥¼ ì‹¤í–‰í•´ë„ ë˜ë©´ true
 	
 	public Host(long timeout) {
 		this.timeout = timeout;
 	}
 	
-	// »óÅÂ¸¦ º¯°æÇÑ´Ù
+	// ìƒíƒœë¥¼ ë³€ê²½í•œë‹¤
 	
 	public synchronized void setExecutable(boolean on) {
 		ready = on;
 		notifyAll();
 	}
 	
-	// »óÅÂ¸¦ °í·ÁÇÏ¿© ½ÇÇàÇÑ´Ù
+	// ìƒíƒœë¥¼ ê³ ë ¤í•˜ì—¬ ì‹¤í–‰í•œë‹¤
 	public synchronized void execute() 
 			throws InterruptedException,TimeoutException{
-		long start = System.currentTimeMillis(); // °³½Ã ½Ã°¢
+		long start = System.currentTimeMillis(); // ê°œì‹œ ì‹œê°
 		while (!ready) {
-			long now = System.currentTimeMillis(); // ÇöÀç ½Ã°¢
-			long rest = timeout - (now - start);  //³ª¸ÓÁö ´ë±â ½Ã°£
+			long now = System.currentTimeMillis(); // í˜„ì¬ ì‹œê°
+			long rest = timeout - (now - start);  //ë‚˜ë¨¸ì§€ ëŒ€ê¸° ì‹œê°„
 			
 			if (rest <= 0) {
 				throw new TimeoutException("now - start = "
@@ -35,7 +35,7 @@ public class Host {
 		
 	}
 	
-	// ½ÇÁ¦ Ã³¸®
+	// ì‹¤ì œ ì²˜ë¦¬
 	private void doExecute() {
 		System.out.println(Thread.currentThread().getName() + " calls doExecute");
 	}

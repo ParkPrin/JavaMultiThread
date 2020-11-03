@@ -6,7 +6,7 @@ public class BMain {
 		for(int i=0; i < 10000; i++) {
 			System.out.println("Good!");
 			try {				
-				Thread.sleep(1000); // ÇØ´ç ÄÚµå·Î ÀÎÇØ 1ÃÊ¿¡ ÇÑ¹ø¾¿ ÄÜ¼Ö¿¡ ¸Þ¼¼Áö Ãâ·ÂµÊ 
+				Thread.sleep(1000); // í•´ë‹¹ ì½”ë“œë¡œ ì¸í•´ 1ì´ˆì— í•œë²ˆì”© ì½˜ì†”ì— ë©”ì„¸ì§€ ì¶œë ¥ë¨ 
 			} catch (InterruptedException e) {
 			}
 		}

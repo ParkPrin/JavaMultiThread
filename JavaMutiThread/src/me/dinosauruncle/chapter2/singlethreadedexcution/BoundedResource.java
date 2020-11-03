@@ -3,30 +3,30 @@ package me.dinosauruncle.chapter2.singlethreadedexcution;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
 
-// ¼ö Á¦ÇÑÀÌ ÀÖ´Â ¸®¼Ò½º
+// ìˆ˜ ì œí•œì´ ìˆëŠ” ë¦¬ì†ŒìŠ¤
 public class BoundedResource {
 	private final Semaphore semaphore;
 	private final int permits;
 	private final static Random random = new Random(314159);
 	
-	//Å¬·¡½º »ı¼ºÀÚ(permits´Â ¸®¼Ò½ºÀÇ °³¼ö)
+	//í´ë˜ìŠ¤ ìƒì„±ì(permitsëŠ” ë¦¬ì†ŒìŠ¤ì˜ ê°œìˆ˜)
 	public BoundedResource(int permits) {
 		this.semaphore = new Semaphore(permits);
 		this.permits = permits;
 	
 	}
 	
-	// ¸®¼Ò½º¸¦ »ç¿ëÇÑ´Ù
+	// ë¦¬ì†ŒìŠ¤ë¥¼ ì‚¬ìš©í•œë‹¤
 	public void use() throws InterruptedException {
-		semaphore.acquire(); // »ç¿ëÇÒ ¼ö ÀÖ´Â ¸®¼Ò½º°¡ ÀÖ´ÂÁö Á¶»ç, ¸ğµç ¸®¼Ò½º°¡ »ç¿ë ÁÖÀÌ¸é ºí·ÏÇÔ
+		semaphore.acquire(); // ì‚¬ìš©í•  ìˆ˜ ìˆëŠ” ë¦¬ì†ŒìŠ¤ê°€ ìˆëŠ”ì§€ ì¡°ì‚¬, ëª¨ë“  ë¦¬ì†ŒìŠ¤ê°€ ì‚¬ìš© ì£¼ì´ë©´ ë¸”ë¡í•¨
 		try {
 			doUse();
 		} finally {
-			semaphore.release(); // »ç¿ëÇÑ ¸®¼Ò½º¸¦ ÇØÁ¦ÇÑ´Ù
+			semaphore.release(); // ì‚¬ìš©í•œ ë¦¬ì†ŒìŠ¤ë¥¼ í•´ì œí•œë‹¤
 		}
 	}
 	
-	// ¸®¼Ò½º¸¦ ½ÇÁ¦·Î »ç¿ëÇÑ´Ù.(¿©±â¿¡¼­´Â Thread.sleepÇÏ°í ÀÖÀ» »Ó)
+	// ë¦¬ì†ŒìŠ¤ë¥¼ ì‹¤ì œë¡œ ì‚¬ìš©í•œë‹¤.(ì—¬ê¸°ì—ì„œëŠ” Thread.sleepí•˜ê³  ìˆì„ ë¿)
 	protected void doUse() throws InterruptedException{
 		Log.println("BEGIN: used = " + (permits - semaphore.availablePermits()));
 		Thread.sleep(random.nextInt(500));

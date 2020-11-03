@@ -1,45 +1,45 @@
 # Producer-Consumer Pattern
 
-## Producer-Consumer Pattern ÀÌ¶õ?
+## Producer-Consumer Pattern ì´ëž€?
 
-producerÀº »ý»êÀÚ, µ¥ÀÌÅÍ ÀÛ¼ºÇÏ´Â thread¸¦
-consumer´Â ¼ÒºñÀÚ, µ¥ÀÌÅÍ¸¦ ÀÌ¿ëÇÏ´Â thread¸¦ ÀÇ¹ÌÇÑ´Ù.
+producerì€ ìƒì‚°ìž, ë°ì´í„° ìž‘ì„±í•˜ëŠ” threadë¥¼
+consumerëŠ” ì†Œë¹„ìž, ë°ì´í„°ë¥¼ ì´ìš©í•˜ëŠ” threadë¥¼ ì˜ë¯¸í•œë‹¤.
 
-»ý»êÀÚ°¡ ¼ÒºñÀÚ¿¡°Ô ¾ÈÀüÇÏ°Ô µ¥ÀÌÅÍ¸¦ Àü´ÞÇÏ´Â ÆÐÅÏÀÌ´Ù.
+ìƒì‚°ìžê°€ ì†Œë¹„ìžì—ê²Œ ì•ˆì „í•˜ê²Œ ë°ì´í„°ë¥¼ ì „ë‹¬í•˜ëŠ” íŒ¨í„´ì´ë‹¤.
 
-´ÙÀ½°ú °°Àº ¹®Á¦ÀÇ »óÅÂÀÌ ÀÖ´Ù°í ÇÏÀÚ
-´Ù¸¸ »ý»êÀÚ¿Í ¼ÒºñÀÚ°¡ °¢°¢ º°µµÀÇ thread·Î¼­ µ¿ÀÛÇÒ ¶§
-¾çÂÊ Ã³¸®¼Óµµ¿¡ Â÷ÀÌ°¡ ÀÖÀ¸¸é ¹®Á¦°¡ ¹ß»ýÇÑ´Ù.
-¼ÒºñÀÚ°¡ µ¥ÀÌÅÍ¸¦ ¹ÞÀ¸·Á ÇÏ´Âµ¥ µ¥ÀÌÅÍ°¡ ¹Ì¿Ï¼º »óÅÂ°Å³ª,
-»ý»êÀÚ°¡ µ¥ÀÌÅÍ¸¦ °Ç³×·Á ÇÏ´Âµ¥ ¼ÒºñÀÚ°¡ µ¥ÀÌÅÍ¸¦ ¹ÞÀ» ¼ö ¾ø´Â
-»óÅÂÀÇ ¹®Á¦¸¦ ¸»ÇÑ´Ù.
+ë‹¤ìŒê³¼ ê°™ì€ ë¬¸ì œì˜ ìƒíƒœì´ ìžˆë‹¤ê³  í•˜ìž
+ë‹¤ë§Œ ìƒì‚°ìžì™€ ì†Œë¹„ìžê°€ ê°ê° ë³„ë„ì˜ threadë¡œì„œ ë™ìž‘í•  ë•Œ
+ì–‘ìª½ ì²˜ë¦¬ì†ë„ì— ì°¨ì´ê°€ ìžˆìœ¼ë©´ ë¬¸ì œê°€ ë°œìƒí•œë‹¤.
+ì†Œë¹„ìžê°€ ë°ì´í„°ë¥¼ ë°›ìœ¼ë ¤ í•˜ëŠ”ë° ë°ì´í„°ê°€ ë¯¸ì™„ì„± ìƒíƒœê±°ë‚˜,
+ìƒì‚°ìžê°€ ë°ì´í„°ë¥¼ ê±´ë„¤ë ¤ í•˜ëŠ”ë° ì†Œë¹„ìžê°€ ë°ì´í„°ë¥¼ ë°›ì„ ìˆ˜ ì—†ëŠ”
+ìƒíƒœì˜ ë¬¸ì œë¥¼ ë§í•œë‹¤.
 
-Producer-Consumer PatternÀº »ý»êÀÚ¿Í ¼ÒºñÀÚ »çÀÌ¿¡
-Áß°³ ¿ªÇÒ·Î Á¸ÀçÇÏ¸ç, ÀÌ Áß°³ ¿ªÇÒÀÌ ¾çÂÊ thread °£ Ã³¸® ¼ÓµµÀÇ
-Â÷ÀÌ¸¦ ¸Þ¿ì°Ô µÈ´Ù
+Producer-Consumer Patternì€ ìƒì‚°ìžì™€ ì†Œë¹„ìž ì‚¬ì´ì—
+ì¤‘ê°œ ì—­í• ë¡œ ì¡´ìž¬í•˜ë©°, ì´ ì¤‘ê°œ ì—­í• ì´ ì–‘ìª½ thread ê°„ ì²˜ë¦¬ ì†ë„ì˜
+ì°¨ì´ë¥¼ ë©”ìš°ê²Œ ëœë‹¤
 
 
-## ¿¹Á¦
+## ì˜ˆì œ
 
 <table>
 	<tr>
-		<td>ÀÌ¸§</td>
-		<td>ÇØ¼³</td>
+		<td>ì´ë¦„</td>
+		<td>í•´ì„¤</td>
 	</tr>
 	<tr>
 		<td>Ch6AMain</td>
-		<td>µ¿ÀÛ Å×½ºÆ®¿ë Å¬·¡½º</td>
+		<td>ë™ìž‘ í…ŒìŠ¤íŠ¸ìš© í´ëž˜ìŠ¤</td>
 	</tr>
 	<tr>
 		<td>MakerThread</td>
-		<td>¿ä¸®»ç¸¦ ³ªÅ¸³»´Â Å¬·¡½º</td>
+		<td>ìš”ë¦¬ì‚¬ë¥¼ ë‚˜íƒ€ë‚´ëŠ” í´ëž˜ìŠ¤</td>
 	</tr>
 	<tr>
 		<td>EaterTrhead</td>
-		<td>¼Õ´ÔÀ» ³ªÅ¸³»´Â Å¬·¡½º</td>
+		<td>ì†ë‹˜ì„ ë‚˜íƒ€ë‚´ëŠ” í´ëž˜ìŠ¤</td>
 	</tr>
 	<tr>
 		<td>Table</td>
-		<td>Å×ÀÌºíÀ» ³ªÅ¸³»´Â Å¬·¡½º</td>
+		<td>í…Œì´ë¸”ì„ ë‚˜íƒ€ë‚´ëŠ” í´ëž˜ìŠ¤</td>
 	</tr>
 </table>

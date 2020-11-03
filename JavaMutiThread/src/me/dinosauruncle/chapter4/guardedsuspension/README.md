@@ -1,35 +1,35 @@
 # Guarded Suspension Pattern
 
-## Guarded Suspension ÀÌ¶õ?
-Guarded [º¸È£¹Þ°í ÀÖ´Ù]¿Í Suspension [ÀÏ½Ã Á¤ÁöÇÔ]À» Ä£ ¸»·Î½á
-º¹¼öÀÇ ¾²·¹µå°¡ µ¿½Ã¿¡ ÀÛ¾÷À» »ç¿ëÇÒ ½Ã ¾²·¹µå¸¦ ±â´Ù¸®°Ô ÇÏ¿© ÀÎ½ºÅÏ½ºÀÇ ¾ÈÀü¼ºÀ» º¸È£ÇÑ´Ù.
+## Guarded Suspension ì´ëž€?
+Guarded [ë³´í˜¸ë°›ê³  ìžˆë‹¤]ì™€ Suspension [ì¼ì‹œ ì •ì§€í•¨]ì„ ì¹œ ë§ë¡œì¨
+ë³µìˆ˜ì˜ ì“°ë ˆë“œê°€ ë™ì‹œì— ìž‘ì—…ì„ ì‚¬ìš©í•  ì‹œ ì“°ë ˆë“œë¥¼ ê¸°ë‹¤ë¦¬ê²Œ í•˜ì—¬ ì¸ìŠ¤í„´ìŠ¤ì˜ ì•ˆì „ì„±ì„ ë³´í˜¸í•œë‹¤.
 
-## ¿¹½Ã
+## ì˜ˆì‹œ
 
 <table>
 	<tr>
-		<td>ÀÌ¸§</td>
-		<td>ÇØ¼³</td>
+		<td>ì´ë¦„</td>
+		<td>í•´ì„¤</td>
 	</tr>
 	<tr>
 		<td>Request</td>
-		<td>ÇÑ °³ÀÇ ¸®Äù½ºÆ®¸¦ Ç¥ÇöÇÑ Å¬·¡½º</td>
+		<td>í•œ ê°œì˜ ë¦¬í€˜ìŠ¤íŠ¸ë¥¼ í‘œí˜„í•œ í´ëž˜ìŠ¤</td>
 	</tr>
 	<tr>
 		<td>RequestQueue</td>
-		<td>¸®Äù½ºÆ®¸¦ ¼ø¼­´ë·Î ºñÃàÇØ µÎ´Â Å¬·¡½º</td>
+		<td>ë¦¬í€˜ìŠ¤íŠ¸ë¥¼ ìˆœì„œëŒ€ë¡œ ë¹„ì¶•í•´ ë‘ëŠ” í´ëž˜ìŠ¤</td>
 	</tr>
 	<tr>
 		<td>ClientThread</td>
-		<td>¸®Äù½ºÆ®¸¦ Á¦½ÃÇÏ´Â Å¬·¡½º</td>
+		<td>ë¦¬í€˜ìŠ¤íŠ¸ë¥¼ ì œì‹œí•˜ëŠ” í´ëž˜ìŠ¤</td>
 	</tr>
 	<tr>
 		<td>ServerThread</td>
-		<td>¸®Äù½ºÆ®¸¦ Á¢¼öÇÏ´Â Å¬·¡½º</td>
+		<td>ë¦¬í€˜ìŠ¤íŠ¸ë¥¼ ì ‘ìˆ˜í•˜ëŠ” í´ëž˜ìŠ¤</td>
 	</tr>
 	<tr>
 		<td>Ch4AMain</td>
-		<td>µ¿ÀÛ Å×½ºÆ®¿ë Å¬·¡½º</td>
+		<td>ë™ìž‘ í…ŒìŠ¤íŠ¸ìš© í´ëž˜ìŠ¤</td>
 	</tr>
 </table>
 
@@ -56,13 +56,13 @@ RequestQueue.class
 public class RequestQueue {
 	private final Queue<Request> queue = new LinkedList<Request>();
 	
-	// ServerThread°´Ã¼°¡ »ç¿ëÇÏ´Â methodÀÌ´Ù
+	// ServerThreadê°ì²´ê°€ ì‚¬ìš©í•˜ëŠ” methodì´ë‹¤
 	public synchronized Request getRequest() {
-	// queuje.peek()´Â Queue°´Ã¼ ¾È¿¡ request°¡ Á¸ÀçÇÏ´ÂÁö ¿©ºÎ¸¦ ¾Ë·ÁÁØ´Ù. ¾øÀ¸¸é null¸¦ ¹ÝÈ¯ÇÑ´Ù
+	// queuje.peek()ëŠ” Queueê°ì²´ ì•ˆì— requestê°€ ì¡´ìž¬í•˜ëŠ”ì§€ ì—¬ë¶€ë¥¼ ì•Œë ¤ì¤€ë‹¤. ì—†ìœ¼ë©´ nullë¥¼ ë°˜í™˜í•œë‹¤
 		while (queue.peek() == null ) {
 			try {
-				// wait¿¡ °É¸®´Â ¼ø°£ ServerThread´Â ±â´Ù¸²ÀÇ »óÅÂ¿¡ ³õ¿©Áø´Ù.
-				// notify() ¶Ç´Â notifyAll()°¡ ÁøÇàµÇ¾î¾ß µ¿ÀÛÇÒ ¼ö ÀÖ´Ù.
+				// waitì— ê±¸ë¦¬ëŠ” ìˆœê°„ ServerThreadëŠ” ê¸°ë‹¤ë¦¼ì˜ ìƒíƒœì— ë†“ì—¬ì§„ë‹¤.
+				// notify() ë˜ëŠ” notifyAll()ê°€ ì§„í–‰ë˜ì–´ì•¼ ë™ìž‘í•  ìˆ˜ ìžˆë‹¤.
 				wait();
 			} catch (InterruptedException e) {
 
@@ -70,11 +70,11 @@ public class RequestQueue {
 		}
 		return queue.remove();
 	}
-		// ClientThread°´Ã¼°¡ »ç¿ëÇÏ´Â methodÀÌ´Ù
+		// ClientThreadê°ì²´ê°€ ì‚¬ìš©í•˜ëŠ” methodì´ë‹¤
 	public synchronized void putRequest (Request request) {
-		// queue.offerÀº queue ¾È¿¡ request °´Ã¼¸¦ ³Ö´Â´Ù. 
+		// queue.offerì€ queue ì•ˆì— request ê°ì²´ë¥¼ ë„£ëŠ”ë‹¤. 
 		queue.offer(request);
-		// notifyAll()ÀÌ ½ÇÇàµÇ´Â ¼ø°£ ±â´Ù¸²ÀÇ »óÅÂ¿¡ ³õ¿©Áø ServerThread°¡ µ¿ÀÛÀ» ½ÃÀÛÇÑ´Ù.
+		// notifyAll()ì´ ì‹¤í–‰ë˜ëŠ” ìˆœê°„ ê¸°ë‹¤ë¦¼ì˜ ìƒíƒœì— ë†“ì—¬ì§„ ServerThreadê°€ ë™ìž‘ì„ ì‹œìž‘í•œë‹¤.
 		notifyAll();
 	}
 }
@@ -146,27 +146,27 @@ public class Ch4AMain {
 
 ```
 
-## Guarded Suspension ÆÐÅÏÀÇ ¸ñÀû
-°øÀ¯ÀÚ¿øÀÌ Á¸ÀçÇÏ´Â »óÅÂ¿¡¼­ °øÀ¯ÀÚ¿ø¿¡ ÀÚ¿ø ÀÔ·ÂÇÏ´Â °´Ã¼¿Í Ãâ·ÂÇÏ´Â °´Ã¼°¡ Á¸ÀçÇÏ¸é
-Ãâ·ÂÇÏ´Â °´Ã¼°¡ ÀÚ¿øÀ» Ãâ·ÂÀ» ÇÏ·Á´Â ÇÏ³ª, ÀÚ¿øÀÌ Á¸ÀçÇÏÁö ¾ÊÀ» °æ¿ì, ÀÚ¿øÀÌ °øÀ¯ÀÚ¿ø¿¡
-µé¾î¿Ã ¶§ ±îÁö ±â´Ù¸²ÀÇ »óÅÂ(Á¤Áö»óÅÂ)¿¡ ³õÀÌ°Ô ÇÏ°í, ÀÔ·ÂÇÏ´Â °´Ã¼°¡ °øÀ¯ÀÚ¿ø¿¡ ÀÚ¿øÀ»
-µî·ÏÇßÀ» ¶§, Á¤ÁöµÇ¾î ÀÖ´Â °´Ã¼ÀÇ »óÅÂ¸¦ µ¿ÀÛÇÏ´Â »óÅÂ·Î ¹Ù²Ù¾îÁÖ´Â ÆÐÅÏÀÌ´Ù.
+## Guarded Suspension íŒ¨í„´ì˜ ëª©ì 
+ê³µìœ ìžì›ì´ ì¡´ìž¬í•˜ëŠ” ìƒíƒœì—ì„œ ê³µìœ ìžì›ì— ìžì› ìž…ë ¥í•˜ëŠ” ê°ì²´ì™€ ì¶œë ¥í•˜ëŠ” ê°ì²´ê°€ ì¡´ìž¬í•˜ë©´
+ì¶œë ¥í•˜ëŠ” ê°ì²´ê°€ ìžì›ì„ ì¶œë ¥ì„ í•˜ë ¤ëŠ” í•˜ë‚˜, ìžì›ì´ ì¡´ìž¬í•˜ì§€ ì•Šì„ ê²½ìš°, ìžì›ì´ ê³µìœ ìžì›ì—
+ë“¤ì–´ì˜¬ ë•Œ ê¹Œì§€ ê¸°ë‹¤ë¦¼ì˜ ìƒíƒœ(ì •ì§€ìƒíƒœ)ì— ë†“ì´ê²Œ í•˜ê³ , ìž…ë ¥í•˜ëŠ” ê°ì²´ê°€ ê³µìœ ìžì›ì— ìžì›ì„
+ë“±ë¡í–ˆì„ ë•Œ, ì •ì§€ë˜ì–´ ìžˆëŠ” ê°ì²´ì˜ ìƒíƒœë¥¼ ë™ìž‘í•˜ëŠ” ìƒíƒœë¡œ ë°”ê¾¸ì–´ì£¼ëŠ” íŒ¨í„´ì´ë‹¤.
 
-## Guarded Suspention ÆÐÅÏ¿¡ ÇÊ¿ä¿ä¼Ò
-1) °øÀ¯ ÀÚ¿ø
-2) °øÀ¯ ÀÚ¿ø¿¡¼­ Æ¯Á¤ ¸Þ¼Òµå¸¦ »ç¿ëÇÒ ½Ã Á¤Áö¿¡ ´ëÇÑ Á¶°Ç
+## Guarded Suspention íŒ¨í„´ì— í•„ìš”ìš”ì†Œ
+1) ê³µìœ  ìžì›
+2) ê³µìœ  ìžì›ì—ì„œ íŠ¹ì • ë©”ì†Œë“œë¥¼ ì‚¬ìš©í•  ì‹œ ì •ì§€ì— ëŒ€í•œ ì¡°ê±´
 
-## Á¶°ÇºÎ synchronized
-Single Threaded Execution ÆÐÅÏ¿¡¼­´Â  ¾²·¹µå°¡ ÇÑ °³¶óµµ Å©¸®Æ¼ÄÃ ¼½¼Ç ¾È¿¡ ÀÖÀ¸¸é
-´Ù¸¥ ¾²·¹µå´Â Å©¸®Æ¼ÄÃ ¼½¼Ç¿¡ µé¾î°¡Áö ¾Ê°í ´ë±âÇß´Ù.
-ÇÑÆí, Guared Suspension ÆÐÅÏ¿¡¼­´Â ¾²·¹µåÀÇ ´ë±â ¿©ºÎ°¡ °¡µå Á¶°Ç¿¡ ÀÇÇØ °áÁ¤ µÈ´Ù.
-Guarded Suspension ÆÐÅÏÀº Single Threaded Execution ÆÐÅÏ¿¡ Á¶°ÇÀ» ºÎ°¡ÇÑ °ÍÀÌ´Ù.
+## ì¡°ê±´ë¶€ synchronized
+Single Threaded Execution íŒ¨í„´ì—ì„œëŠ”  ì“°ë ˆë“œê°€ í•œ ê°œë¼ë„ í¬ë¦¬í‹°ì»¬ ì„¹ì…˜ ì•ˆì— ìžˆìœ¼ë©´
+ë‹¤ë¥¸ ì“°ë ˆë“œëŠ” í¬ë¦¬í‹°ì»¬ ì„¹ì…˜ì— ë“¤ì–´ê°€ì§€ ì•Šê³  ëŒ€ê¸°í–ˆë‹¤.
+í•œíŽ¸, Guared Suspension íŒ¨í„´ì—ì„œëŠ” ì“°ë ˆë“œì˜ ëŒ€ê¸° ì—¬ë¶€ê°€ ê°€ë“œ ì¡°ê±´ì— ì˜í•´ ê²°ì • ëœë‹¤.
+Guarded Suspension íŒ¨í„´ì€ Single Threaded Execution íŒ¨í„´ì— ì¡°ê±´ì„ ë¶€ê°€í•œ ê²ƒì´ë‹¤.
 
-## java.util.concurrent.LinkedBlockingQueue¸¦ »ç¿ëÇÑ ¿¹Á¦ ÇÁ·Î±×·¥
-Queue<Request> queue = new LinkedList<Request>(); ¸¦ °øÀ¯ÀÚ¿ø¿¡¼­ »ç¿ëÇÒ °æ¿ì
-wait, notify, nofityAll ¸Þ¼Òµå¿¡ ´ëÇÑ Ã³¸®°¡ ÇÊ¿ä¾ø´Ù.
+## java.util.concurrent.LinkedBlockingQueueë¥¼ ì‚¬ìš©í•œ ì˜ˆì œ í”„ë¡œê·¸ëž¨
+Queue<Request> queue = new LinkedList<Request>(); ë¥¼ ê³µìœ ìžì›ì—ì„œ ì‚¬ìš©í•  ê²½ìš°
+wait, notify, nofityAll ë©”ì†Œë“œì— ëŒ€í•œ ì²˜ë¦¬ê°€ í•„ìš”ì—†ë‹¤.
 
-### ¿¹½Ã
+### ì˜ˆì‹œ
 
 LinkedBlockingQueueUsedRequestQueue.class
 
@@ -194,10 +194,10 @@ public class LinkedBlockingQueueUsedRequestQueue {
 }
 ```
 
-µ¥ÀÌÅÍ¸¦ Ãâ·ÂÇÏ´Â °æ¿ì
-±âÁ¸ ÄÚµå¿¡¼­´Â syncronized¸¦ »ç¿ëÇÔ°ú µ¿½Ã¿¡ queue ³»ºÎ¿¡ Á¶°ÇÀ» °É¾úÁö¸¸
-LinkedBlockingQueue »ç¿ëÇÏ´Â °æ¿ì take() ÇÏ³ª·Î ÀÌ ¸ðµç °úÁ¤ÀÌ »ý·«ÀÌ µÈ´Ù
+ë°ì´í„°ë¥¼ ì¶œë ¥í•˜ëŠ” ê²½ìš°
+ê¸°ì¡´ ì½”ë“œì—ì„œëŠ” syncronizedë¥¼ ì‚¬ìš©í•¨ê³¼ ë™ì‹œì— queue ë‚´ë¶€ì— ì¡°ê±´ì„ ê±¸ì—ˆì§€ë§Œ
+LinkedBlockingQueue ì‚¬ìš©í•˜ëŠ” ê²½ìš° take() í•˜ë‚˜ë¡œ ì´ ëª¨ë“  ê³¼ì •ì´ ìƒëžµì´ ëœë‹¤
 
 
-µ¥ÀÌÅÍ¸¦ ÀÔ·ÂÇÏ´Â °æ¿ìµµ ¾Ë¸®´Â °úÁ¤À» »ý·«ÇÏ°í put() ÇÏ³ª·Î ÀÌÀü°ú °°Àº Ã³¸®°¡ µÈ´Ù
+ë°ì´í„°ë¥¼ ìž…ë ¥í•˜ëŠ” ê²½ìš°ë„ ì•Œë¦¬ëŠ” ê³¼ì •ì„ ìƒëžµí•˜ê³  put() í•˜ë‚˜ë¡œ ì´ì „ê³¼ ê°™ì€ ì²˜ë¦¬ê°€ ëœë‹¤
 

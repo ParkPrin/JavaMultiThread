@@ -2,9 +2,9 @@ package me.dinosauruncle.chapter6.producer_consumer;
 
 public class Table {
 	private final String[] buffer;
-	private int tail;	// ´ÙÀ½¿¡ putÇÒ Àå¼Ò
-	private int head;	// ´ÙÀ½¿¡ takeÇÒ Àå¼Ò
-	private int count;	// buffer ¾È¿¡ ÄÉÀÌÅ© ¼ö
+	private int tail;	// ë‹¤ìŒì— putí•  ì¥ì†Œ
+	private int head;	// ë‹¤ìŒì— takeí•  ì¥ì†Œ
+	private int count;	// buffer ì•ˆì— ì¼€ì´í¬ ìˆ˜
 	public Table(int count) {
 		this.buffer = new String[count];
 		this.head = 0;
@@ -12,7 +12,7 @@ public class Table {
 		this.count = 0;
 	}
 	
-	// ÄÉÀÌÅ©¸¦ ³õ´Â´Ù
+	// ì¼€ì´í¬ë¥¼ ë†“ëŠ”ë‹¤
 	public synchronized void put (String cake) 
 			throws InterruptedException {
 		System.out.println(Thread.currentThread().getName()+
@@ -26,7 +26,7 @@ public class Table {
 		notifyAll();
 	}
 	
-	// ÄÉÀÌÅ©¸¦ ¸Ô´Â´Ù
+	// ì¼€ì´í¬ë¥¼ ë¨¹ëŠ”ë‹¤
 	public synchronized String take() 
 			throws InterruptedException {
 		while (count <= 0) {

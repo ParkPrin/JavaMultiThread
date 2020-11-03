@@ -20,17 +20,17 @@ public class Client implements Runnable {
 		for(int i=0; i< 10000; i++ ) {
 			int randomMoney = random.nextInt(initMoney);
 			if (randomMoney %2 == 0) {
-				// Â¦¼ö ¿µ¿ª
-				// ÀÔ±ÝÇÔ
+				// ì§ìˆ˜ ì˜ì—­
+				// ìž…ê¸ˆí•¨
 				bank.deposit(randomMoney);
-				System.out.println("ÀÔ±ÝÀÚ: " + clientName);
+				System.out.println("ìž…ê¸ˆìž: " + clientName);
 			} else {
-				// È¦¼ö ¿µ¿ª
-				// ÀÎÃâÇÔ
+				// í™€ìˆ˜ ì˜ì—­
+				// ì¸ì¶œí•¨
 				bank.withdraw(randomMoney);
-				System.out.println("ÀÎÃâÀÚ: " + clientName);
+				System.out.println("ì¸ì¶œìž: " + clientName);
 			}
-			System.out.println(bank.getName() + "´Ô °èÁÂÀÇ ÇöÀçÀÜ°í´Â " + bank.getMoney() +  "¿ø ÀÔ´Ï´Ù.");
+			System.out.println(bank.getName() + "ë‹˜ ê³„ì¢Œì˜ í˜„ìž¬ìž”ê³ ëŠ” " + bank.getMoney() +  "ì› ìž…ë‹ˆë‹¤.");
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {

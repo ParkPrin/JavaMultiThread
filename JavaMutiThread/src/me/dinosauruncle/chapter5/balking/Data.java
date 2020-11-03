@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.Writer;
 
 public class Data {
-	private final String filename;	// ÀúÀåÇÏ´Â ÆÄÀÏ¸í
+	private final String filename;	// ì €ì¥í•˜ëŠ” íŒŒì¼ëª…
 	private String content;
 	private boolean changed;
 	
@@ -15,14 +15,14 @@ public class Data {
 		this.changed = true;
 	}
 	
-	// µ¥ÀÌÅÍÀÇ ³»¿ëÀ» ¼öÁ¤ÇÑ´Ù
+	// ë°ì´í„°ì˜ ë‚´ìš©ì„ ìˆ˜ì •í•œë‹¤
 	public synchronized void change(String newContent) {
 		content = newContent;
 		changed = true;
 	}
 	
 	
-	// µ¥ÀÌÅÍÀÇ ³»¿ëÀÌ º¯°æµÇ¾úÀ¸¸é ÆÄÀÏ¿¡ ÀúÀåÇÑ´Ù
+	// ë°ì´í„°ì˜ ë‚´ìš©ì´ ë³€ê²½ë˜ì—ˆìœ¼ë©´ íŒŒì¼ì— ì €ì¥í•œë‹¤
 	public synchronized void save() throws IOException {
 		if (!changed) {
 			return;
@@ -32,7 +32,7 @@ public class Data {
 		
 	}
 	
-	// µ¥ÀÌÅÍÀÇ ³»¿ëÀ» ½ÇÁ¦·Î ÆÄÀÏ¿¡ ÀúÀåÇÑ´Ù
+	// ë°ì´í„°ì˜ ë‚´ìš©ì„ ì‹¤ì œë¡œ íŒŒì¼ì— ì €ì¥í•œë‹¤
 	private void doSave() throws IOException {
 		System.out.println(Thread.currentThread().getName() 
 				+ " calls doSave, content = " + content);
