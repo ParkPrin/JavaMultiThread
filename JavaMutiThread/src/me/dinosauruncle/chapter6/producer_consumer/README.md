@@ -209,3 +209,110 @@ multi Thread를 사용한 Java 프로그래밍에 익숙해지면 메소드에 t
 - 취소 가능한 method
 
 즉 throws InterruptedException가 붙는 method는 시간이 걸릴 지는 모르나 취소할 수 있는 method이다
+
+## ArrayBlockingQueue를 이용한 Producer-Consumer
+
+### 예제
+
+Ch6BMain.class
+
+
+```
+public class Ch6BMain {
+	public static void main(String[] args) {
+		ArrayBlockingQueueTable table = new ArrayBlockingQueueTable(3);		// 케이크를 3개까지 놓을 수 있는 테이블이 있다
+		new ArrayBlockingQueueMakerThread("MakerThread-1", table, 31415).start();
+		new ArrayBlockingQueueMakerThread("MakerThread-2", table, 92653).start();
+		new ArrayBlockingQueueMakerThread("MakerThread-3", table, 58979).start();
+		new ArrayBlockingQueueEaterThread("EaterThread-1", table, 32384).start();
+		new ArrayBlockingQueueEaterThread("EaterThread-2", table, 62643).start();
+		new ArrayBlockingQueueEaterThread("EaterThread-3", table, 38327).start();
+	}
+}
+```
+
+ArrayBlockingQueueTable.class
+
+```
+import java.util.concurrent.ArrayBlockingQueue;
+
+public class ArrayBlockingQueueTable extends ArrayBlockingQueue<String> {
+	public ArrayBlockingQueueTable(int count) {
+		super(count);
+	}
+	
+	public void put(String cake) throws InterruptedException {
+		System.out.println(Thread.currentThread().getName() + " puts " + cake);
+		super.put(cake);
+	}
+	
+	public String take() throws InterruptedException {
+		String cake = super.take();
+		System.out.println(Thread.currentThread().getName() + " takes " + cake);
+		return cake;
+	}
+	
+}
+```
+
+ArrayBlockingQueueMakerThread.class
+
+```
+public class ArrayBlockingQueueMakerThread extends Thread {
+	private final Random random;
+	private final ArrayBlockingQueueTable table;
+	private static int id =0;	// 케이크 안내 번호(요리사 전원 공통)
+	public ArrayBlockingQueueMakerThread(String name, ArrayBlockingQueueTable table, long seed) {
+		super(name);
+		this.table = table;
+		this.random = new Random(seed);
+	}
+	
+	@Override
+	public void run() {
+		try {
+			while (true) {
+				Thread.sleep(random.nextInt(10000));
+				String cake = "[ Cake No. " + nextId() + " by " + getName() + "]";
+				table.put(cake);
+			}
+		} catch (InterruptedException e) {
+
+		}
+		
+	}
+	private static synchronized int nextId() {
+		return id++;
+	}
+
+}
+```
+
+ArrayBlockingQueueEaterThread.class
+
+```
+public class ArrayBlockingQueueEaterThread extends Thread {
+	private final Random random;
+	private final ArrayBlockingQueueTable table;
+	public ArrayBlockingQueueEaterThread(String name, ArrayBlockingQueueTable table, long seed) {
+		super(name);
+		this.table = table;
+		this.random = new Random(seed);
+	}
+	
+	@Override
+	public void run() {
+		try {
+			while (true) {
+				String cake = table.take();
+				Thread.sleep(random.nextInt(1000));
+			}
+		} catch (InterruptedException e) {}
+	}
+}
+```
+
+
+---
+기존에 작성한 Producer-Consumer Patter 코드와의 차이점은 Channel에 들어가던 guard 조건을 넣지않고
+ArrayBlockingQueue 클래스를 상속하므로 ArrayBlockingQueue 구현된 guard 조건을 사용할 수 있다.
