@@ -12,3 +12,7 @@ Java 언어를 이용해서 MultiThread를 학습한다
 [Guarded Suspension](https://github.com/dinosaurUncle/JavaMultiThread/tree/main/JavaMutiThread/src/me/dinosauruncle/chapter4/guardedsuspension)
 
 [Balking](https://github.com/dinosaurUncle/JavaMultiThread/tree/main/JavaMutiThread/src/me/dinosauruncle/chapter5/balking)
+
+[Producer-Consumer](https://github.com/ParkPrin/JavaMultiThread/tree/main/JavaMutiThread/src/me/dinosauruncle/chapter6/producer_consumer)
+
+[Read-Write-Lock](https://github.com/ParkPrin/JavaMultiThread/tree/main/JavaMutiThread/src/me/dinosauruncle/chapter7/read_write_lock)
