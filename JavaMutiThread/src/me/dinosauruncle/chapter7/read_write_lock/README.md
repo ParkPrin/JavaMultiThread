@@ -26,7 +26,7 @@ Thread가 인스턴스의 상태를  [읽는다]고 하는 처리를 실행해�
 	</tr>
 	<tr>
 		<td>Data</td>
-		<td>읽고 쓰기가 가능한 클래</td>
+		<td>읽고 쓰기가 가능한 클래스</td>
 	</tr>
 	<tr>
 		<td>WriterThread</td>
@@ -34,7 +34,7 @@ Thread가 인스턴스의 상태를  [읽는다]고 하는 처리를 실행해�
 	</tr>
 	<tr>
 		<td>ReadWriteLock</td>
-		<td>읽고 쓰기의 락을 제공하는 클래</td>
+		<td>읽고 쓰기의 락을 제공하는 클래스</td>
 	</tr>
 </table>
 
@@ -229,3 +229,56 @@ ReaderThread는 데이터를 읽는 쓰레드이며, 실제 데이터를 읽는 
 ReaderThread가 Data 클래스를 중복해서 점유해서 읽는 작업을 진행하는 것은 가능하다
 그러나 WriterThread는 오직 하나의 쓰레드만 Data 클래스를 점유해서 쓰는 작업을 하도록
 ReadWriterLock 클래스에서 규정하고 있다.
+
+충돌나는 경우를 표현
+
+<table>
+	<tr>
+		<td></td>
+		<td>읽다</td>
+		<td>쓰다</td>
+	</tr>
+	<tr><td>읽다</td>
+		<td>총돌 없음</td>
+		<td>[읽기]와 [쓰기]의 충돌 (read-write confilict}</td>
+	</tr>
+	<tr>
+		<td>쓰다</td>
+		<td>[읽기]와 [쓰기]의 충돌 (read-write confilict}</td>
+		<td>[쓰기]와 [쓰기]의 충돌 (write-write confilict}</td>
+	</tr>
+</table>
+
+## Read-Write Lock Pattern의 특징과 사용되는 경우
+1. [읽기] 처리끼리는 충돌하지 않는 점을 이용하여 수행 능력을 높였다
+2. 일기 처리가 무거울 때 유효
+3. 읽기 빈도가 쓰기 빈도보다 높을 때 유효
+
+## java.util.concurrent.locks를 사용한 예제 프로그램
+java.util.concurrent.locks.ReadWriteLock 인터페이스는 예제 프로그램에서 작성한
+ReadWriteLock 클래스와 다르며, [읽기 위한 락]과 [쓰기 위한 락]을 별도의 객체로서 취급한다.
+
+<table>
+	<tr>
+		<td>예제 프로그램에서 만든 ReadWriteLock 클래스</td>
+		<td>java.util.concurrent.locks 패키지의 ReadWriteLock 인터페이</td>
+	</tr>
+	<tr>
+		<td>readLock()</td>
+		<td>readLock().lock()</td>
+	</tr>
+	<tr>
+		<td>readUnlock()</td>
+		<td>readUnlock().unlock()</td>
+	</tr>
+	<tr>
+		<td>writeLock()</td>
+		<td>writeLock().lock</td>
+	</tr>
+	<tr>
+		<td>writeUnlock()</td>
+		<td>writeUnlock().unlock</td>
+	</tr>
+</table>
+
+
