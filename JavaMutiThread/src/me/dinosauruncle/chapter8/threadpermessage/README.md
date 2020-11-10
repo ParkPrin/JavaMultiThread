@@ -364,3 +364,4 @@ Helper 역할의 handle 메소드이다. 그러나 client 역할의 쓰레드를
 에서 기동한다. 이 새로운 쓰레드가 handle을 호출하며, 요구를 제시했던 쓰레드는 request로부터 바로
 돌아올 수 있다. 이러한 비동기 메세지의 송신을 구현한 것이 Thread-Per-Message Pattern 이다.
 
+
